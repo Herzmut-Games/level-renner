@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/forest/waterfall/WATER GROUND DAY 1.png" type="Texture" id=1]
+[ext_resource path="res://assets/forest/waterfall/WATER GROUND DAY 2.png" type="Texture" id=2]
+[ext_resource path="res://assets/forest/waterfall/WATER GROUND DAY 3.png" type="Texture" id=3]
+[ext_resource path="res://assets/forest/waterfall/WATER GROUND DAY 4.png" type="Texture" id=4]
+[ext_resource path="res://assets/forest/waterfall/WATER GROUND DAY 5.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Waterfall" type="AnimatedSprite"]
+position = Vector2( 5, 5 )
+frames = SubResource( 1 )
