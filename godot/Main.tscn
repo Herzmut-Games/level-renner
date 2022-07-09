@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/forest/TREE 2 - DAY SUMMER.png" type="Texture" id=3]
 [ext_resource path="res://assets/forest/TREE 3 - DAY SUMMER.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Waterfall.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -223,6 +223,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 248, 96 )
+frame = 1
 playing = true
 
 [node name="TileMapBackground" type="TileMap" parent="."]
@@ -241,3 +242,4 @@ tile_data = PoolIntArray( 65543, 0, 196611, 131095, 0, 196608, 131096, 0, 196610
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 87, 90 )
+wall_jump_enabled = true
