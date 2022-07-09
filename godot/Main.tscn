@@ -589,22 +589,18 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1200, 160 )
 region_filter_clip = true
 
-[node name="Player" parent="." instance=ExtResource( 10 )]
-position = Vector2( 112, 152 )
-wall_jump_enabled = true
-vertical_center_position_path = NodePath("../VerticalCenterPosition")
-
 [node name="VerticalCenterPosition" type="Position2D" parent="."]
 position = Vector2( 0, 192 )
 
 [node name="Waterfall2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200, 256 )
-frame = 2
+frame = 4
 playing = true
 flip_v = true
 
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
-position = Vector2( 200, 128 )
+visible = false
+position = Vector2( 248, 96 )
 frame = 3
 playing = true
 
@@ -626,3 +622,5 @@ tile_data = PoolIntArray( -327649, 0, 0, -327648, 0, 2, -327646, 0, 196608, -327
 
 [node name="Ghoul" parent="." instance=ExtResource( 16 )]
 position = Vector2( 87, 141 )
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
