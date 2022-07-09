@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BACKGROUND SUMMER DAY 1.png-513a28869979247fda6172fe93bf6ae0.stex"
+path="res://.import/WATER GROUND NIGHT 3.png-7bd7865f0d03774e2cfb21d69383572e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/forest/BACKGROUND SUMMER DAY 1.png"
-dest_files=[ "res://.import/BACKGROUND SUMMER DAY 1.png-513a28869979247fda6172fe93bf6ae0.stex" ]
+source_file="res://assets/forest/waterfall/inverted/WATER GROUND NIGHT 3.png"
+dest_files=[ "res://.import/WATER GROUND NIGHT 3.png-7bd7865f0d03774e2cfb21d69383572e.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=false
+process/invert_color=true
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
