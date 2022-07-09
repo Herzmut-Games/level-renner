@@ -6,6 +6,7 @@ export var jump_speed = 200
 export var stop_force = 1300
 export var walk_max_speed = 200
 export var gravity_line = 190
+export var gravity_boost = 1.05
 export var wall_jump_enabled = false
 export var wall_jump_cooldown = 0.5
 export var wall_jump_bounce = 0.9
@@ -14,6 +15,7 @@ var velocity = Vector2()
 var looking_right = true
 var upside_down = false
 var wall_jump_used = false
+var gravity_boosted = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var anim_player = $AnimationPlayer
@@ -51,10 +53,13 @@ func spin_dir() -> void:
 func _physics_process(delta) -> void:
 	var next_animation = "idle"
 	var direction = get_movement_direction()
+	# player should get a small speed boost when swapping gravity
+	var gravity_switched = false
 
 	if (position.y >= gravity_line) == (gravity > 0):
 		spin_dir()
 		gravity *= -1
+		gravity_switched = true
 
 	var walk = walk_force * direction
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
@@ -73,6 +78,10 @@ func _physics_process(delta) -> void:
 
 	velocity.y += gravity * delta
 
+	if gravity_switched and not gravity_boosted:
+		velocity *= gravity_boost
+		gravity_boosted = true
+
 	velocity = move_and_slide_with_snap(
 		velocity,
 		Vector2.DOWN if not upside_down else Vector2.UP,
@@ -83,6 +92,7 @@ func _physics_process(delta) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = (1 if upside_down else -1) * jump_speed
 		wall_jump_used = false
+		gravity_boosted = false
 		anim_player.play("jump")
 		yield(anim_player, "animation_finished")
 		anim_player.play("fall")

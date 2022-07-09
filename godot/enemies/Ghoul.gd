@@ -1,32 +1,55 @@
 extends KinematicBody2D
+class_name Enemy
 
-var chase_velocity = Vector2(50.0, 0)
-var walk_velocity = Vector2(30, 0)
+export var chase_velocity = Vector2(50.0, 0)
+export var walk_velocity = Vector2(30, 0)
+export var gravity_line = 190
 
-var velocity = Vector2.ZERO
+var velocity = walk_velocity
 var player = null
-var looking_right = true
+
+signal collided(object, player)
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func look_dir(should_look_right: bool) -> void:
-	if should_look_right == looking_right: return
-	$AnimatedSprite.scale.x *= -1
-	looking_right = not looking_right
+enum States{CHASE, WALK, ATTACK}
+var state = null
 
-func can_walk() -> bool:
-	return $RayCastLeft.is_colliding() || $RayCastRight.is_colliding()
-	
+func gravity_dir():
+	if position.y < gravity_line:
+		return Vector2.DOWN
+	else:
+		return Vector2.UP
+
 func _physics_process(delta):
+	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
+	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
+	
 	if is_on_floor():
 		velocity.y = 0
 		chase() || walk()
 	else:
-		velocity += Vector2(0, gravity) * delta
+		velocity += Vector2(0, gravity) * gravity_dir() * delta
 		
-	look_dir(velocity.x > 0)
-				
-	move_and_slide(velocity, Vector2.UP)
+	move_and_slide(velocity, -gravity_dir())
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			emit_signal("collided", collision.collider, self)
+	
+func _process(delta):
+	$AnimatedSprite.flip_h = velocity.x < 0
+	$AnimatedSprite.flip_v = position.y > gravity_line
+	
+	match state:
+		States.WALK:
+			$AnimatedSprite.play("walk")
+			$AnimatedSprite.speed_scale = 1.0
+		States.CHASE:
+			$AnimatedSprite.play("walk")
+			$AnimatedSprite.speed_scale = 1.5
+		States.ATTACK:
+			$AnimatedSprite.play("attack")
 	
 func chase():
 	if !player:
@@ -41,20 +64,24 @@ func chase():
 	else:
 		velocity = directionToPlayer * chase_velocity
 		
-	$AnimatedSprite.play("walk")
+	state = States.CHASE
 	return true
 	
-func walk():		
+func walk():
 	if !$RayCastLeft.is_colliding():
 		velocity = walk_velocity * Vector2.RIGHT
 	elif !$RayCastRight.is_colliding() :
-		velocity = walk_velocity  * Vector2.LEFT
+		velocity = walk_velocity * Vector2.LEFT
 		
-	$AnimatedSprite.play("walk")
-
+	state = States.WALK
+	
+func attack():
+	state = States.ATTACK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("characters")
+	
 	$AnimatedSprite.playing = true
 	pass # Replace with function body.
 

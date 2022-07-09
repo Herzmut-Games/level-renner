@@ -23,7 +23,8 @@
 [ext_resource path="res://assets/forest/BACKGROUND AUTUMN NIGHT 5.png" type="Texture" id=21]
 [ext_resource path="res://assets/forest/BACKGROUND AUTUMN NIGHT 1.png" type="Texture" id=22]
 [ext_resource path="res://assets/spikes.png" type="Texture" id=23]
-[ext_resource path="res://assets/ui/single_ammo.png" type="Texture" id=24]
+[ext_resource path="res://levels/Level.gd" type="Script" id=24]
+[ext_resource path="res://assets/ui/single_ammo.png" type="Texture" id=25]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -504,6 +505,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 11/z_index = 0
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 24 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -104.0 ]
 }
@@ -653,6 +655,7 @@ region_filter_clip = true
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 201, 127.967 )
+frame = 0
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
@@ -694,5 +697,5 @@ margin_left = 16.0
 margin_top = 176.0
 margin_right = 32.0
 margin_bottom = 192.0
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 stretch_mode = 2
