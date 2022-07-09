@@ -1,4 +1,5 @@
 extends KinematicBody2D
+class_name Enemy
 
 export var chase_velocity = Vector2(50.0, 0)
 export var walk_velocity = Vector2(30, 0)
@@ -6,6 +7,8 @@ export var gravity_line = 190
 
 var velocity = walk_velocity
 var player = null
+
+signal collided(object, player)
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -29,6 +32,10 @@ func _physics_process(delta):
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 		
 	move_and_slide(velocity, -gravity_dir())
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			emit_signal("collided", collision.collider, self)
 	
 func _process(delta):
 	$AnimatedSprite.flip_h = velocity.x < 0
@@ -41,6 +48,8 @@ func _process(delta):
 		States.CHASE:
 			$AnimatedSprite.play("walk")
 			$AnimatedSprite.speed_scale = 1.5
+		States.ATTACK:
+			$AnimatedSprite.play("attack")
 	
 func chase():
 	if !player:
@@ -65,9 +74,14 @@ func walk():
 		velocity = walk_velocity * Vector2.LEFT
 		
 	state = States.WALK
+	
+func attack():
+	state = States.ATTACK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("characters")
+	
 	$AnimatedSprite.playing = true
 	pass # Replace with function body.
 
