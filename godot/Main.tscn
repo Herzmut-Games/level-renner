@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/forest/TILESET AUTUMN NIGHT.png" type="Texture" id=7]
 [ext_resource path="res://assets/forest/TREE 1 - NIGHT AUTUMN.png" type="Texture" id=8]
 [ext_resource path="res://assets/forest/TREE 2 - NIGHT AUTUMN.png" type="Texture" id=9]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 5.png" type="Texture" id=11]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 1.png" type="Texture" id=12]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 2.png" type="Texture" id=13]
@@ -480,7 +480,6 @@ texture = ExtResource( 12 )
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 248, 96 )
-frame = 1
 playing = true
 
 [node name="TileMapBackground" type="TileMap" parent="."]
