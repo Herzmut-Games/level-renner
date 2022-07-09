@@ -589,19 +589,16 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1200, 160 )
 region_filter_clip = true
 
-[node name="VerticalCenterPosition" type="Position2D" parent="."]
-position = Vector2( 0, 192 )
-
 [node name="Waterfall2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200, 256 )
-frame = 4
+frame = 2
 playing = true
 flip_v = true
 
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 248, 96 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="TileMapBackground" type="TileMap" parent="."]
