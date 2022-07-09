@@ -14,7 +14,8 @@ var upside_down = false
 var wall_jump_used = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-onready var anim_sprite = $AnimationPlayer
+onready var anim_player = $AnimationPlayer
+onready var anim_sprite = $AnimatedSprite
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -45,7 +46,7 @@ func _physics_process(delta) -> void:
 		spin_dir()
 		gravity *= -1
 
-	if !is_on_floor() and anim_sprite.animation != "jump":
+	if !is_on_floor() and anim_player.current_animation != "jump":
 		next_animation = "fall"
 
 	var walk = walk_force * direction
@@ -72,9 +73,9 @@ func _physics_process(delta) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = (1 if upside_down else -1) * jump_speed
 		wall_jump_used = false
-		anim_sprite.play("jump")
-		yield(anim_sprite, "animation_finished")
-		anim_sprite.play("fall")
+		anim_player.play("jump")
+		yield(anim_player, "animation_finished")
+		anim_player.play("fall")
 
 	# wall jump
 	if (Input.is_action_just_pressed("jump") and wall_jump_enabled and
@@ -84,5 +85,5 @@ func _physics_process(delta) -> void:
 		wall_jump_used = true
 
 	# adapt next_animation if the current animation is not "jump" or already the next_animation
-	if not anim_sprite.animation in ["jump", next_animation]:
-		anim_sprite.play(next_animation)
+	if not anim_player.current_animation in ["jump", next_animation]:
+		anim_player.play(next_animation)
