@@ -10,11 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://enemies/Ghoul.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://levels/Level.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/Player.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
+"Level": "",
 "Player": ""
 }
 

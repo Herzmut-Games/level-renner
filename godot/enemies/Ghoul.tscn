@@ -265,11 +265,11 @@ speed_scale = 5.0
 position = Vector2( 0.5, 4 )
 shape = SubResource( 44 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TriggerArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
 position = Vector2( 0, -24 )
 rotation = 1.58201
 shape = SubResource( 45 )
@@ -287,5 +287,5 @@ position = Vector2( -6, 0 )
 enabled = true
 cast_to = Vector2( 0, 20 )
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="TriggerArea" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="TriggerArea" to="." method="_on_Area2D_body_exited"]
