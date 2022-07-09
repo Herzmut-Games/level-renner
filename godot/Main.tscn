@@ -480,7 +480,7 @@ texture = ExtResource( 12 )
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 visible = false
 position = Vector2( 248, 96 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="TileMapBackground" type="TileMap" parent="."]
@@ -501,3 +501,4 @@ tile_data = PoolIntArray( 65561, 0, 196608, 65562, 0, 196610, 131093, 0, 196608,
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
 position = Vector2( 48, 136 )
+wall_jump_enabled = true
