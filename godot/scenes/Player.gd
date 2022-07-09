@@ -7,6 +7,8 @@ export var stop_force = 1300
 export var walk_max_speed = 200
 export var gravity_line = 190
 export var wall_jump_enabled = false
+export var wall_jump_cooldown = 0.5
+export var wall_jump_bounce = 0.9
 
 var velocity = Vector2()
 var looking_right = true
@@ -16,6 +18,14 @@ var wall_jump_used = false
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var anim_player = $AnimationPlayer
 onready var anim_sprite = $AnimatedSprite
+onready var walljump_timer = $WalljumpCooldownTimer
+
+func trigger_walljump_cooldown():
+	wall_jump_used = true
+	walljump_timer.start(wall_jump_cooldown)
+
+func _on_WalljumpCooldownTimer_timeout():
+	wall_jump_used = false
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -81,9 +91,11 @@ func _physics_process(delta) -> void:
 	if (Input.is_action_just_pressed("jump") and wall_jump_enabled and
 		not is_on_floor() and is_on_wall() and not wall_jump_used):
 		velocity.y = (1 if upside_down else -1) * jump_speed / 1.25
-		velocity.x += (1 if looking_right else -1) * walk_max_speed
-		wall_jump_used = true
+		velocity.x += (-1 if looking_right else 1) * walk_max_speed * wall_jump_bounce
+		trigger_walljump_cooldown()
 
 	# adapt next_animation if the current animation is not "jump" or already the next_animation
 	if not anim_player.current_animation in ["jump", next_animation]:
 		anim_player.play(next_animation)
+
+
