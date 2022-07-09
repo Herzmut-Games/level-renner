@@ -592,12 +592,13 @@ region_filter_clip = true
 
 [node name="Waterfall2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200, 256 )
+frame = 1
 playing = true
 flip_v = true
 
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 200, 128 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="TileMapBackground" type="TileMap" parent="."]
@@ -620,3 +621,4 @@ tile_data = PoolIntArray( -327649, 0, 0, -327648, 0, 2, -327646, 0, 196608, -327
 position = Vector2( 87, 141 )
 
 [node name="Player" parent="." instance=ExtResource( 10 )]
+position = Vector2( 48, 144 )
