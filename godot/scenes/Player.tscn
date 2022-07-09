@@ -62,6 +62,22 @@ region = Rect2( 0, 38, 30, 19 )
 atlas = ExtResource( 4 )
 region = Rect2( 0, 57, 30, 19 )
 
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 30, 19 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 19, 30, 19 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 38, 30, 19 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 57, 30, 19 )
+
 [sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 30, 19 )
@@ -155,6 +171,11 @@ animations = [ {
 "frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ) ],
 "loop": true,
 "name": "attack",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 } ]
 
@@ -385,3 +406,9 @@ anims/fall = SubResource( 30 )
 anims/idle = SubResource( 31 )
 anims/jump = SubResource( 32 )
 anims/run = SubResource( 33 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -1 )
+current = true
+limit_top = 0
+limit_bottom = 0
+smoothing_enabled = true

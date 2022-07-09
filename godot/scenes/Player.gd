@@ -7,6 +7,7 @@ export var stop_force = 1300
 export var walk_max_speed = 200
 export var gravity_line = 190
 export var wall_jump_enabled = false
+export var vertical_center_position_path: NodePath
 
 var velocity = Vector2()
 var looking_right = true
@@ -15,6 +16,7 @@ var wall_jump_used = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var anim_player = $AnimationPlayer
+onready var vertical_center = get_node(vertical_center_position_path)
 onready var anim_sprite = $AnimatedSprite
 
 func get_movement_direction() -> float:
@@ -27,7 +29,7 @@ func look_dir(should_look_right: bool) -> void:
 
 # spin the character
 func spin_dir() -> void:
-	# inintial rotation degrees
+  # inintial rotation degrees
 	var rot_deg = 0
 	$Tween.interpolate_property(anim_sprite, "rotation_degrees", rot_deg, rot_deg + 180, 0.15)
 	$Tween.start()
@@ -56,7 +58,7 @@ func _physics_process(delta) -> void:
 		velocity.x += walk * delta
 	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
 
-	# look in a different direction
+  # look in a different direction
 	if velocity.x:
 		look_dir(velocity.x > 0)
 		next_animation = "run"
@@ -69,7 +71,7 @@ func _physics_process(delta) -> void:
 		Vector2.UP if not upside_down else Vector2.DOWN
 	)
 
-	# regular jump
+  # regular jump
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = (1 if upside_down else -1) * jump_speed
 		wall_jump_used = false
@@ -77,7 +79,7 @@ func _physics_process(delta) -> void:
 		yield(anim_player, "animation_finished")
 		anim_player.play("fall")
 
-	# wall jump
+  # wall jump
 	if (Input.is_action_just_pressed("jump") and wall_jump_enabled and
 		not is_on_floor() and is_on_wall() and not wall_jump_used):
 		velocity.y = (1 if upside_down else -1) * jump_speed / 1.25
