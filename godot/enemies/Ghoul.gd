@@ -1,5 +1,6 @@
 extends KinematicBody2D
 class_name Enemy
+export (PackedScene) var Enemy
 
 export var chase_velocity = Vector2(50.0, 0)
 export var walk_velocity = Vector2(30, 0)
