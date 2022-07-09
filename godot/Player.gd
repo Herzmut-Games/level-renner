@@ -29,7 +29,7 @@ func _physics_process(delta) -> void:
 		next_animation = "fall"
 
 	var walk = walk_force * direction
-	if abs(walk) < walk_force * 0.2:
+	if abs(walk) < walk_force * 0.2 and is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, stop_force * delta)
 	else:
 		velocity.x += walk * delta
