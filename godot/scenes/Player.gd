@@ -17,7 +17,6 @@ var wall_jump_used = false
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var vertical_center = get_node(vertical_center_position_path)
 onready var anim_sprite = $AnimatedSprite
-onready var camera = $Camera2D
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -41,8 +40,6 @@ func spin_dir() -> void:
 	upside_down = anim_sprite.scale.y < 0
 
 func _physics_process(delta) -> void:
-	camera.global_position.y = vertical_center.position.y
-
 	var next_animation = "idle"
 	var direction = get_movement_direction()
 
