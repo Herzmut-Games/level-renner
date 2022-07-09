@@ -99,10 +99,11 @@ func _physics_process(delta) -> void:
 
   # wall jump
 	if (Input.is_action_just_pressed("jump") and wall_jump_enabled and
-		not is_on_floor() and is_on_wall() and not wall_jump_used):
+		not is_on_floor() and is_on_wall() and not wall_jump_used and GlobalGame.walljump_available()):
 		velocity.y = (1 if upside_down else -1) * jump_speed / 1.25
 		velocity.x += (-1 if looking_right else 1) * walk_max_speed * wall_jump_bounce
 		trigger_walljump_cooldown()
+		GlobalGame.use_walljump()
 
 	# adapt next_animation if the current animation is not "jump" or already the next_animation
 	if not anim_player.current_animation in ["jump", next_animation]:
