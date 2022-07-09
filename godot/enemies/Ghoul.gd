@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-var run_speed = 50
+var chase_velocity = Vector2(50.0, 0)
+var walk_velocity = Vector2(30, 0)
+
 var velocity = Vector2.ZERO
 var player = null
 var looking_right = true
@@ -13,32 +15,43 @@ func look_dir(should_look_right: bool) -> void:
 	looking_right = not looking_right
 
 func can_walk() -> bool:
+	return $RayCastLeft.is_colliding() || $RayCastRight.is_colliding()
+	
+func _physics_process(delta):
+	if is_on_floor():
+		velocity.y = 0
+		chase() || walk()
+	else:
+		velocity += Vector2(0, gravity) * delta
+		
+	look_dir(velocity.x > 0)
+				
+	move_and_slide(velocity, Vector2.UP)
+	
+func chase():
 	if !player:
 		return false
-	var player_direction = position.direction_to(player.position)
-
-	if player_direction.x > 0:
-		return $RayCastRight.is_colliding()
-	return $RayCastLeft.is_colliding()
-
-func _physics_process(delta):
-	velocity = Vector2.ZERO
-
-	if can_walk():
-		velocity = position.direction_to(player.position) * Vector2(1, 0) * run_speed
-		$AnimatedSprite.play("walk")
+	
+	var directionToPlayer = position.direction_to(player.position)
+		
+	if directionToPlayer.x < 0 && !$RayCastLeft.is_colliding():
+		velocity = Vector2.ZERO
+	elif directionToPlayer.x > 0 && !$RayCastRight.is_colliding():
+		velocity = Vector2.ZERO
 	else:
-		$AnimatedSprite.play("idle")
+		velocity = directionToPlayer * chase_velocity
+		
+	$AnimatedSprite.play("walk")
+	return true
+	
+func walk():		
+	if !$RayCastLeft.is_colliding():
+		velocity = walk_velocity * Vector2.RIGHT
+	elif !$RayCastRight.is_colliding() :
+		velocity = walk_velocity  * Vector2.LEFT
+		
+	$AnimatedSprite.play("walk")
 
-	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity)
-
-	# look in a different direction
-	if velocity.x:
-		look_dir(velocity.x > 0)
-		$AnimatedSprite.play("walk")
-	else:
-		$AnimatedSprite.play("idle")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
