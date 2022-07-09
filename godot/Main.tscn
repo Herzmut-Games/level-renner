@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://assets/forest/TILESET SUMMER DAY.png" type="Texture" id=1]
 [ext_resource path="res://assets/forest/TREE 1 - DAY SUMMER.png" type="Texture" id=2]
@@ -24,7 +24,9 @@
 [ext_resource path="res://assets/forest/BACKGROUND AUTUMN NIGHT 1.png" type="Texture" id=22]
 [ext_resource path="res://assets/spikes.png" type="Texture" id=23]
 [ext_resource path="res://levels/Level.gd" type="Script" id=24]
-[ext_resource path="res://assets/ui/single_ammo.png" type="Texture" id=25]
+[ext_resource path="res://assets/ui/UI - Ammo 16x16 with glow.png" type="Texture" id=25]
+[ext_resource path="res://ControlScript.gd" type="Script" id=26]
+[ext_resource path="res://assets/ui/UI - 16x16 UI Tileset with glow.png" type="Texture" id=27]
 
 [sub_resource type="ConvexPolygonShape2D" id=16]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -655,13 +657,13 @@ region_filter_clip = true
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 201, 127.967 )
-frame = 0
+frame = 3
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
-frame = 1
+frame = 4
 
 [node name="TileMapBackground" type="TileMap" parent="Level"]
 position = Vector2( 0, 96 )
@@ -691,11 +693,35 @@ wall_jump_enabled = true
 [node name="Control" type="Control" parent="UI"]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 26 )
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control"]
-margin_left = 16.0
-margin_top = 176.0
-margin_right = 32.0
-margin_bottom = 192.0
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+margin_left = 8.0
+margin_top = 345.0
+margin_right = 60.0
+margin_bottom = 374.0
+color = Color( 0.00392157, 0.00392157, 0.00392157, 0.666667 )
+
+[node name="BackgroundNinePatchRect" type="NinePatchRect" parent="UI/Control"]
+margin_left = 6.0
+margin_top = 343.0
+margin_right = 62.0
+margin_bottom = 376.0
+texture = ExtResource( 27 )
+region_rect = Rect2( 211, 66, 42, 44 )
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/BackgroundNinePatchRect"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 11.0
+margin_bottom = 21.0
+rect_scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 25 )
-stretch_mode = 2
+region_rect = Rect2( 63, 32, 6, 16 )
+patch_margin_top = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
