@@ -7,7 +7,6 @@ export var stop_force = 1300
 export var walk_max_speed = 200
 export var gravity_line = 190
 export var wall_jump_enabled = false
-export var vertical_center_position_path: NodePath
 
 var velocity = Vector2()
 var looking_right = true
@@ -16,7 +15,6 @@ var wall_jump_used = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var anim_player = $AnimationPlayer
-onready var vertical_center = get_node(vertical_center_position_path)
 onready var anim_sprite = $AnimatedSprite
 
 func get_movement_direction() -> float:
@@ -48,9 +46,6 @@ func _physics_process(delta) -> void:
 		spin_dir()
 		gravity *= -1
 
-	if !is_on_floor() and anim_player.current_animation != "jump":
-		next_animation = "fall"
-
 	var walk = walk_force * direction
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, stop_force * delta)
@@ -62,6 +57,9 @@ func _physics_process(delta) -> void:
 	if velocity.x:
 		look_dir(velocity.x > 0)
 		next_animation = "run"
+
+	if !is_on_floor() and anim_player.current_animation != "jump":
+		next_animation = "fall"
 
 	velocity.y += gravity * delta
 
