@@ -7,7 +7,6 @@ export var stop_force = 1300
 export var walk_max_speed = 200
 export var gravity_line = 190
 export var wall_jump_enabled = false
-export var vertical_center_position_path: NodePath
 
 var velocity = Vector2()
 var looking_right = true
@@ -15,9 +14,8 @@ var upside_down = false
 var wall_jump_used = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-onready var vertical_center = get_node(vertical_center_position_path)
+onready var anim_player = $AnimationPlayer
 onready var anim_sprite = $AnimatedSprite
-onready var camera = $Camera2D
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -41,17 +39,12 @@ func spin_dir() -> void:
 	upside_down = anim_sprite.scale.y < 0
 
 func _physics_process(delta) -> void:
-	camera.global_position.y = vertical_center.position.y
-
 	var next_animation = "idle"
 	var direction = get_movement_direction()
 
 	if (position.y >= gravity_line) == (gravity > 0):
 		spin_dir()
 		gravity *= -1
-
-	if !is_on_floor() and anim_sprite.animation != "jump":
-		next_animation = "fall"
 
 	var walk = walk_force * direction
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
@@ -65,11 +58,14 @@ func _physics_process(delta) -> void:
 		look_dir(velocity.x > 0)
 		next_animation = "run"
 
+	if !is_on_floor() and anim_player.current_animation != "jump":
+		next_animation = "fall"
+
 	velocity.y += gravity * delta
 
 	velocity = move_and_slide_with_snap(
-		velocity, 
-		Vector2.DOWN if not upside_down else Vector2.UP, 
+		velocity,
+		Vector2.DOWN if not upside_down else Vector2.UP,
 		Vector2.UP if not upside_down else Vector2.DOWN
 	)
 
@@ -77,9 +73,9 @@ func _physics_process(delta) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		velocity.y = (1 if upside_down else -1) * jump_speed
 		wall_jump_used = false
-		anim_sprite.play("jump")
-		yield(anim_sprite, "animation_finished")
-		anim_sprite.play("fall")
+		anim_player.play("jump")
+		yield(anim_player, "animation_finished")
+		anim_player.play("fall")
 
   # wall jump
 	if (Input.is_action_just_pressed("jump") and wall_jump_enabled and
@@ -88,6 +84,6 @@ func _physics_process(delta) -> void:
 		velocity.x += (1 if looking_right else -1) * walk_max_speed
 		wall_jump_used = true
 
-  # adapt next_animation if the current animation is not "jump" or already the next_animation
-	if not anim_sprite.animation in ["jump", next_animation]:
-		anim_sprite.play(next_animation)
+	# adapt next_animation if the current animation is not "jump" or already the next_animation
+	if not anim_player.current_animation in ["jump", next_animation]:
+		anim_player.play(next_animation)
