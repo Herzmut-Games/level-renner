@@ -14,7 +14,7 @@ var upside_down = false
 var wall_jump_used = false
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-onready var anim_sprite = $AnimatedSprite
+onready var anim_sprite = $AnimationPlayer
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -59,12 +59,12 @@ func _physics_process(delta) -> void:
 	if velocity.x:
 		look_dir(velocity.x > 0)
 		next_animation = "run"
-	
+
 	velocity.y += gravity * delta
 
 	velocity = move_and_slide_with_snap(
-		velocity, 
-		Vector2.DOWN if not upside_down else Vector2.UP, 
+		velocity,
+		Vector2.DOWN if not upside_down else Vector2.UP,
 		Vector2.UP if not upside_down else Vector2.DOWN
 	)
 
