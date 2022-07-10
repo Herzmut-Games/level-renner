@@ -8,6 +8,7 @@ export var walk_max_speed = 200
 export var wall_jump_enabled = false
 export var wall_jump_bounce = 0.9
 
+
 onready var inverion_material = ShaderMaterial.new()
 
 func _ready():
@@ -71,6 +72,18 @@ func get_movement_direction() -> float:
 func jump():
 	if is_on_floor(): #regular jump
 		velocity += gravity_dir() * -jump_speed
-	elif wall_jump_enabled and is_on_wall()  and GlobalGame.walljump_available(): #wall jump
+	elif wall_jump_enabled and is_on_wall() and no_walljump == 0 and GlobalGame.walljump_available(): #wall jump
 		velocity = Vector2((-1 if velocity.x > 0 else 1) * walk_max_speed * wall_jump_bounce, 0) + gravity_dir() * -jump_speed / 1.25
 		GlobalGame.use_walljump()
+
+# To prevent race conditions when toggling true/false to set if walljumps are
+# enabled, we add/substract 1 for every area we enter or leave, so no_walljump
+# will be > 0 if transitioning between two protected areas
+var no_walljump = 0
+
+func enable_walljump():
+	no_walljump -= 1
+
+func disable_walljump():
+	no_walljump += 1
+
