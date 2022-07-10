@@ -10,7 +10,7 @@ func _ready():
 func character_collision(character, object):
 	if character is Player:
 		if object is Enemy:
-			object.attack(object)
+			object.attack(character)
 			character.hit()
 		if object is Trap:
 			character.hit()
