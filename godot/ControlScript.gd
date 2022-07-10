@@ -1,7 +1,7 @@
 extends Control
 
-onready var walljump_progress = $WalljumpControl/BackgroundNinePatchRect/NinePatchRect
-onready var time = $TimerControl/BackgroundNinePatchRect/Label
+onready var walljump_progress = $LeftBottomControl/BackgroundNinePatchRect/NinePatchRect
+onready var time = $LeftBottomControl/BackgroundNinePatchRect/TimeLabel
 
 func _process(_delta):
 	walljump_progress.visible = GlobalGame.walljump_available()

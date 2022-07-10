@@ -5,8 +5,8 @@
 [ext_resource path="res://characters/PlayerSprite.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 4.0
+radius = 7.0
+height = 8.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
