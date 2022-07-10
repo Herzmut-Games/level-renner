@@ -536,6 +536,7 @@ playing = true
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 206, 64 )
 rotation = 3.14159
+frame = 3
 
 [node name="Spikes" type="Node2D" parent="Level"]
 position = Vector2( 67, -182 )

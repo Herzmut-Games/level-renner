@@ -30,15 +30,15 @@ func process_movement(delta):
 			States.ROAM:
 				process_roam()
 			States.ATTACK:
-				velocity.x = 0
+				process_attack()
 	else:
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 	
 func process_chase():
-	if !player:
+	if !target:
 		return
 	
-	var directionToPlayer = position.direction_to(player.position)
+	var directionToPlayer = position.direction_to(target.position)
 		
 	if directionToPlayer.x < 0 && !$RayCastLeft.is_colliding():
 		velocity = Vector2.ZERO
@@ -48,12 +48,18 @@ func process_chase():
 		velocity = directionToPlayer * chase_velocity
 	
 func process_roam():
-	if !$RayCastLeft.is_colliding():
+	if !$RayCastLeft.is_colliding() or is_on_wall():
 		velocity = roam_velocity * Vector2.RIGHT
-	elif !$RayCastRight.is_colliding() :
+	elif !$RayCastRight.is_colliding() or is_on_wall() :
 		velocity = roam_velocity * Vector2.LEFT
 	else:
 		velocity = velocity.normalized() * roam_velocity
+		
+func process_attack():
+	velocity = Vector2(target.position.x - position.x, 0).normalized()
+		
+func idle():
+	roam()
 		
 func _on_chase_trigger_entered(body:Node):
 	chase(body)
