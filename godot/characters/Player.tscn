@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/PlayerSprite.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://utils/CamShake.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 6.5, 9 )
@@ -340,6 +341,7 @@ current = true
 limit_top = 0
 limit_bottom = 0
 smoothing_enabled = true
+script = ExtResource( 4 )
 
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
 one_shot = true

@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/spikes.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=55]
-extents = Vector2( 5, 5 )
+extents = Vector2( 7, 5 )
 
 [node name="Spike" type="StaticBody2D" groups=["spike"]]
 position = Vector2( 199, 71 )

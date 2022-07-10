@@ -686,7 +686,7 @@ playing = true
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
-frame = 1
+frame = 4
 
 [node name="Spikes" type="Node2D" parent="Level"]
 position = Vector2( 61, 10 )
@@ -708,6 +708,9 @@ rotation = 3.14159
 [node name="Spike5" parent="Level/Spikes" instance=ExtResource( 29 )]
 position = Vector2( 1325, 30 )
 rotation = -1.5708
+
+[node name="Spike6" parent="Level/Spikes" instance=ExtResource( 29 )]
+position = Vector2( 70, 127 )
 
 [node name="TileMapBackground" type="TileMap" parent="Level"]
 position = Vector2( 0, 96 )
