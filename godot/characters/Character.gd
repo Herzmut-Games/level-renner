@@ -42,17 +42,17 @@ func _process(delta):
 	processAnimation()
 	
 func spin_dir():
-	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, 0.15)
+	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
 	$Tween.start()
 	yield($Tween, "tween_completed")
+	$AnimatedSprite.flip_v = not $AnimatedSprite.flip_v
 	$AnimatedSprite.rotation_degrees = 0
 		
 func processAnimation():
-	if position.y > gravity_line != $AnimatedSprite.flip_v :
+	if position.y > gravity_line != $AnimatedSprite.flip_v and not $Tween.is_active():
 		spin_dir()
 
 	$AnimatedSprite.flip_h = velocity.x < 0
-	$AnimatedSprite.flip_v = position.y > gravity_line
 		
 func roam():
 	player = null
