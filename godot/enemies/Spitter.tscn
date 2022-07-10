@@ -26,18 +26,6 @@ region = Rect2( 228, 0, 57, 39 )
 atlas = ExtResource( 1 )
 region = Rect2( 285, 0, 57, 39 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 117, 57, 39 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 57, 117, 57, 39 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 114, 117, 57, 39 )
-
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 78, 57, 39 )
@@ -98,6 +86,18 @@ region = Rect2( 285, 39, 57, 39 )
 atlas = ExtResource( 1 )
 region = Rect2( 342, 39, 57, 39 )
 
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 117, 57, 39 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 57, 117, 57, 39 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 114, 117, 57, 39 )
+
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 156, 57, 39 )
@@ -137,11 +137,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
-"loop": true,
-"name": "damage",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "attack",
@@ -150,6 +145,11 @@ animations = [ {
 "frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "damage",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
@@ -163,7 +163,7 @@ animations = [ {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 33 )
 animation = "death"
-frame = 1
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

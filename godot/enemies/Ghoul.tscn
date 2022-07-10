@@ -9,34 +9,6 @@
 radius = 7.0
 height = 10.0
 
-[sub_resource type="AtlasTexture" id=57]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=58]
-atlas = ExtResource( 3 )
-region = Rect2( 62, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=59]
-atlas = ExtResource( 3 )
-region = Rect2( 124, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=60]
-atlas = ExtResource( 3 )
-region = Rect2( 186, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=61]
-atlas = ExtResource( 3 )
-region = Rect2( 248, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=62]
-atlas = ExtResource( 3 )
-region = Rect2( 310, 0, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=63]
-atlas = ExtResource( 3 )
-region = Rect2( 372, 0, 62, 33 )
-
 [sub_resource type="AtlasTexture" id=47]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 62, 33 )
@@ -73,16 +45,44 @@ region = Rect2( 434, 0, 62, 33 )
 atlas = ExtResource( 1 )
 region = Rect2( 496, 0, 62, 33 )
 
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 3 )
+region = Rect2( 62, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 3 )
+region = Rect2( 124, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 3 )
+region = Rect2( 186, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 3 )
+region = Rect2( 248, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 3 )
+region = Rect2( 310, 0, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=63]
+atlas = ExtResource( 3 )
+region = Rect2( 372, 0, 62, 33 )
+
 [sub_resource type="SpriteFrames" id=56]
 animations = [ {
-"frames": [ SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ) ],
+"loop": false,
+"name": "attack",
 "speed": 5.0
 } ]
 
