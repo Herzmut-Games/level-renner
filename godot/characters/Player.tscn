@@ -4,9 +4,8 @@
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
 [ext_resource path="res://characters/PlayerSprite.tres" type="SpriteFrames" id=3]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 4.0
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 7, 10 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "RESET"
@@ -286,7 +285,8 @@ script = ExtResource( 2 )
 wall_jump_enabled = true
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource( 1 )
+position = Vector2( 1, 0 )
+shape = SubResource( 9 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = ExtResource( 3 )
