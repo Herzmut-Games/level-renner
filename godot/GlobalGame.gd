@@ -8,11 +8,19 @@ export var health = 3
 var run_started = false
 var run_start_time = 0
 
+var camera : Camera2D
+var player : KinematicBody2D
+
 func _ready():
 	var walljump_timer = Timer.new()
 	walljump_timer.connect("timeout", self, "_on_walljump_timer_timeout")
 	add_child(walljump_timer)
 	walljump_timer.start(2)
+	
+func init(c, p):
+	camera = c
+	player = p
+	start_run()
 	
 func start_run():
 	run_start_time = OS.get_system_time_msecs()
@@ -38,8 +46,11 @@ func _on_walljump_timer_timeout():
 		walljumps += 1
 		
 func hit(amount = 1):
+	camera.shake(0.2,25,6)
 	health = health - amount
 	if health <= 0:
 		health = 0
+		
+		get_tree().change_scene("res://scenes/GameOver.tscn")
 		# TODO: Game Over
 		pass

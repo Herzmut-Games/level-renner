@@ -94,7 +94,6 @@ func disable_walljump():
 	no_walljump += 1
 
 func hit():
-	$Camera2D.shake(0.2,25,6)
 	GlobalGame.hit()
 	audio_player.stream = hit_sound
 	audio_player.play()
