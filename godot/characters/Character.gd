@@ -42,7 +42,7 @@ func _process(delta):
 	processAnimation()
 	
 func spin_dir():
-	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, 1)
+	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	$AnimatedSprite.flip_v = not $AnimatedSprite.flip_v
