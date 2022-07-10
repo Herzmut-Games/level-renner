@@ -680,13 +680,13 @@ region_filter_clip = true
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 201, 127.967 )
-frame = 0
+frame = 2
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
-frame = 0
+frame = 1
 
 [node name="Spikes" type="Node2D" parent="Level"]
 position = Vector2( 61, 10 )
@@ -795,6 +795,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="HealthLabel" type="Label" parent="UI/Control/LeftBottomControl/BackgroundNinePatchRect"]
+visible = false
 margin_left = 64.0
 margin_top = 4.0
 margin_right = 104.0
@@ -802,9 +803,20 @@ margin_bottom = 18.0
 text = "3/3"
 
 [node name="TimeLabel" type="Label" parent="UI/Control/LeftBottomControl/BackgroundNinePatchRect"]
-margin_left = 62.0
-margin_top = 18.0
-margin_right = 126.0
-margin_bottom = 32.0
-rect_scale = Vector2( 0.6, 0.6 )
+margin_left = 78.0
+margin_top = 21.0
+margin_right = 142.0
+margin_bottom = 35.0
+rect_scale = Vector2( 0.4, 0.4 )
 text = "00:00:000"
+
+[node name="HealthBar" type="NinePatchRect" parent="UI/Control/LeftBottomControl/BackgroundNinePatchRect"]
+margin_left = 56.0
+margin_top = 8.0
+margin_right = 81.0
+margin_bottom = 13.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 27 )
+region_rect = Rect2( 287, 245, 25, 5 )
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
