@@ -17,7 +17,7 @@ animations = [ {
 
 [node name="Lavafall" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -25,3 +25,4 @@ texture = ExtResource( 6 )
 texture_scale = 3.29
 color = Color( 0.815686, 0.439216, 0.0745098, 1 )
 energy = 1.12
+shadow_enabled = true
