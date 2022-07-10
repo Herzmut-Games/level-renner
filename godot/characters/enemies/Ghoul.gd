@@ -5,8 +5,8 @@ func _ready():
 	$TriggerArea.connect("body_entered", self, "_on_chase_trigger_entered")
 	$TriggerArea.connect("body_exited", self, "_on_chase_trigger_exited")
 	
-func processAnimation():
-	.processAnimation()
+func process_animation():
+	.process_animation()
 	
 	match state:
 		States.ROAM:
@@ -18,7 +18,7 @@ func processAnimation():
 		States.ATTACK:
 			$AnimatedSprite.play("attack")
 			
-func processMovement(delta):
+func process_movement(delta):
 	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
 	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
 	
@@ -26,15 +26,15 @@ func processMovement(delta):
 		velocity.y = 0
 		match state:
 			States.CHASE:
-				processChase()
+				process_chase()
 			States.ROAM:
-				processRoam()
+				process_roam()
 			States.ATTACK:
 				velocity.x = 0
 	else:
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 	
-func processChase():
+func process_chase():
 	if !player:
 		return
 	
@@ -47,7 +47,7 @@ func processChase():
 	else:
 		velocity = directionToPlayer * chase_velocity
 	
-func processRoam():
+func process_roam():
 	if !$RayCastLeft.is_colliding():
 		velocity = roam_velocity * Vector2.RIGHT
 	elif !$RayCastRight.is_colliding() :

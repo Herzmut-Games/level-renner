@@ -619,7 +619,7 @@ position = Vector2( 49, 131 )
 [node name="Lavafall" parent="." instance=ExtResource( 17 )]
 position = Vector2( 888, 336 )
 z_index = -1
-frame = 4
+frame = 0
 speed_scale = 0.5
 flip_v = true
 
@@ -631,6 +631,7 @@ shape = SubResource( 48 )
 
 [node name="Waterfall" parent="." instance=ExtResource( 5 )]
 position = Vector2( 888, 48 )
+frame = 2
 playing = true
 
 [node name="Corner Roots" parent="." instance=ExtResource( 23 )]
