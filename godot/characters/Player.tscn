@@ -309,6 +309,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 6, 8 )
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 3
@@ -344,11 +345,17 @@ smoothing_enabled = true
 one_shot = true
 
 [node name="HitboxArea2d" type="Area2D" parent="." index="6"]
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2d" index="0"]
 shape = SubResource( 11 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
+volume_db = -13.0
+
+[node name="HitTimer" type="Timer" parent="." index="8"]
 
 [connection signal="body_entered" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_entered"]
 [connection signal="body_exited" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_exited"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
