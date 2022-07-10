@@ -663,11 +663,7 @@ playing = true
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
-<<<<<<< HEAD
 frame = 0
-=======
-frame = 1
->>>>>>> bd4a0f7 (fix jump animation)
 
 [node name="TileMapBackground" type="TileMap" parent="Level"]
 position = Vector2( 0, 96 )
