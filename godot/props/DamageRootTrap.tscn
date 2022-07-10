@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/Trees Tileset/Tree Tileset6.png" type="Texture" id=1]
+[ext_resource path="res://props/Trap.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.5, 27.5 )
+
+[node name="DamageRoots" instance=ExtResource( 2 )]
+texture = ExtResource( 1 )
+region_rect = Rect2( 247, 277, 11, 55 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0.5, -0.5 )
+shape = SubResource( 1 )
