@@ -12,9 +12,9 @@ region_rect = Rect2( 260, 380, 50, 50 )
 [node name="No walljump Area" parent="." instance=ExtResource( 3 )]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="No walljump Area"]
-polygon = PoolVector2Array( 22, 19, 22, -23, -23, -23, -23, -16, 14, -16, 14, 19 )
+polygon = PoolVector2Array( 28, 19, 28, -28, -23, -28, -23, -16, 14, -16, 14, 19 )
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="Light2D" type="Light2D" parent="No walljump Area"]
 position = Vector2( 13, -15 )
 scale = Vector2( 0.296875, 0.296875 )
 texture = ExtResource( 2 )
