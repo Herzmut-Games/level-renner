@@ -13,6 +13,8 @@ onready var inverion_material = ShaderMaterial.new()
 onready var hit_sound = preload("res://assets/sound/Hit_2.wav")
 onready var audio_player = $AudioStreamPlayer
 
+var camExtScript = preload("res://utils/CamShake.gd").new()
+
 func _ready():
 	inverion_material.shader = preload("res://assets/shaders/color_inversion.gdshader")
 	._ready()
@@ -92,6 +94,7 @@ func disable_walljump():
 	no_walljump += 1
 
 func hit():
+	$Camera2D.shake(0.2,25,6)
 	GlobalGame.hit()
 	audio_player.stream = hit_sound
 	audio_player.play()
