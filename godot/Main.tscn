@@ -678,7 +678,7 @@ region_filter_clip = true
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 201, 127.967 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
@@ -707,6 +707,7 @@ position = Vector2( 167, 144 )
 
 [node name="Player" parent="Level" instance=ExtResource( 10 )]
 position = Vector2( 63, 140 )
+wall_jump_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
