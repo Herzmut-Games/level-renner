@@ -8,6 +8,7 @@ export var walk_max_speed = 200
 export var wall_jump_enabled = false
 export var wall_jump_bounce = 0.9
 
+
 onready var inverion_material = ShaderMaterial.new()
 
 func _ready():
@@ -18,8 +19,8 @@ func spin_dir():
 	$AnimatedSprite.material = null if $AnimatedSprite.material else inverion_material
 	.spin_dir()
 
-func processAnimation():
-	.processAnimation()
+func process_animation():
+	.process_animation()
 
 	match state:
 		States.IDLE:
@@ -31,7 +32,7 @@ func processAnimation():
 		States.JUMP:
 			$AnimatedSprite.play("jump")
 
-func processMovement(delta):
+func process_movement(delta):
 	var direction = get_movement_direction()
 	var walk = walk_force * direction
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
@@ -40,7 +41,7 @@ func processMovement(delta):
 		velocity.x += walk * delta
 	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
 
-	if is_on_floor() || is_on_ceiling():
+	if is_on_floor() or is_on_ceiling():
 		velocity.y = 0
 	if is_on_wall():
 		velocity.x = clamp(velocity.x, -1, 1)
@@ -50,11 +51,9 @@ func processMovement(delta):
 	if  Input.is_action_just_pressed("jump"):
 		jump()
 
-	changeState()
+	change_state()
 
-func changeState():
-	print(velocity)
-	
+func change_state():
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
@@ -71,6 +70,18 @@ func get_movement_direction() -> float:
 func jump():
 	if is_on_floor(): #regular jump
 		velocity += gravity_dir() * -jump_speed
-	elif wall_jump_enabled and is_on_wall()  and GlobalGame.walljump_available(): #wall jump
+	elif wall_jump_enabled and is_on_wall() and no_walljump == 0 and GlobalGame.walljump_available(): #wall jump
 		velocity = Vector2((-1 if velocity.x > 0 else 1) * walk_max_speed * wall_jump_bounce, 0) + gravity_dir() * -jump_speed / 1.25
 		GlobalGame.use_walljump()
+
+# To prevent race conditions when toggling true/false to set if walljumps are
+# enabled, we add/substract 1 for every area we enter or leave, so no_walljump
+# will be > 0 if transitioning between two protected areas
+var no_walljump = 0
+
+func enable_walljump():
+	no_walljump -= 1
+
+func disable_walljump():
+	no_walljump += 1
+

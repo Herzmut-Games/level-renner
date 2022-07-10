@@ -684,6 +684,7 @@ playing = true
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
+frame = 1
 
 [node name="TileMapBackground" type="TileMap" parent="Level"]
 position = Vector2( 0, 96 )
