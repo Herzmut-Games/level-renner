@@ -315,6 +315,9 @@ extents = Vector2( 6, 8 )
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 3
 script = ExtResource( 2 )
+chase_velocity = Vector2( 50, 0 )
+roam_velocity = Vector2( 30, 0 )
+gravity_line = 0
 wall_jump_enabled = true
 
 [node name="CollisionShape2D" parent="." index="0"]

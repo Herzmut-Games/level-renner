@@ -589,7 +589,7 @@ gravity_line = 0
 [node name="Lavafall" parent="." instance=ExtResource( 17 )]
 position = Vector2( 888, 336 )
 z_index = -1
-frame = 0
+frame = 3
 speed_scale = 0.5
 flip_v = true
 
