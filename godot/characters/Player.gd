@@ -18,8 +18,8 @@ func spin_dir():
 	$AnimatedSprite.material = null if $AnimatedSprite.material else inverion_material
 	.spin_dir()
 
-func processAnimation():
-	.processAnimation()
+func process_animation():
+	.process_animation()
 
 	match state:
 		States.IDLE:
@@ -31,7 +31,7 @@ func processAnimation():
 		States.JUMP:
 			$AnimatedSprite.play("jump")
 
-func processMovement(delta):
+func process_movement(delta):
 	var direction = get_movement_direction()
 	var walk = walk_force * direction
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
@@ -40,7 +40,7 @@ func processMovement(delta):
 		velocity.x += walk * delta
 	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
 
-	if is_on_floor() || is_on_ceiling():
+	if is_on_floor() or is_on_ceiling():
 		velocity.y = 0
 	if is_on_wall():
 		velocity.x = clamp(velocity.x, -1, 1)
@@ -50,9 +50,9 @@ func processMovement(delta):
 	if  Input.is_action_just_pressed("jump"):
 		jump()
 
-	changeState()
+	change_state()
 
-func changeState():
+func change_state():
 	print(velocity)
 	
 	if velocity.length() > 0:

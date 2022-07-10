@@ -285,12 +285,12 @@ script = ExtResource( 2 )
 wall_jump_enabled = true
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2( 0, 0 )
 shape = SubResource( 9 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = ExtResource( 3 )
-animation = "idle"
+animation = "run"
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 anims/RESET = SubResource( 2 )

@@ -2,10 +2,10 @@ extends Node2D
 class_name Level
 
 func _ready():
-	get_tree().call_group("characters", "connect", "collided", self, "characterCollision")
+	get_tree().call_group("characters", "connect", "collided", self, "character_collision")
 	GlobalGame.start_run()
 	
-func characterCollision(object, character):	
+func character_collision(object, character):
 	if (
 		character is Enemy and
 		(

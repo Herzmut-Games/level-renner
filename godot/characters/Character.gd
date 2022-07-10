@@ -18,7 +18,6 @@ var state = States.ROAM
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("characters")
-	$AnimatedSprite.connect("animation_finished", self, "_on_animation_finished")
 
 func gravity_dir():
 	if position.y < gravity_line:
@@ -27,7 +26,7 @@ func gravity_dir():
 		return Vector2.UP
 
 func _physics_process(delta):
-	processMovement(delta)
+	process_movement(delta)
 	move_and_slide_with_snap(velocity, gravity_dir(), -gravity_dir())
 
 	for i in get_slide_count():
@@ -35,11 +34,11 @@ func _physics_process(delta):
 		if collision:
 			emit_signal("collided", collision.collider, self)
 			
-func processMovement(delta):
+func process_movement(delta):
 	pass
 	
 func _process(delta):
-	processAnimation()
+	process_animation()
 	
 func spin_dir():
 	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
@@ -48,7 +47,7 @@ func spin_dir():
 	$AnimatedSprite.flip_v = not $AnimatedSprite.flip_v
 	$AnimatedSprite.rotation_degrees = 0
 		
-func processAnimation():
+func process_animation():
 	if position.y > gravity_line != $AnimatedSprite.flip_v and not $Tween.is_active():
 		spin_dir()
 
