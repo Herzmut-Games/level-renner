@@ -91,13 +91,23 @@ func enable_walljump():
 func disable_walljump():
 	no_walljump += 1
 
+func hit():
+	GlobalGame.hit()
+	audio_player.stream = hit_sound
+	audio_player.play()
 
 
 func _on_HitboxArea2d_body_entered(body):
 	if body.is_in_group("spike"):
-		audio_player.stream = hit_sound
-		audio_player.play()
+		$HitTimer.start(1)
 		state = States.HIT
+		hit()
 
 func _on_HitboxArea2d_body_exited(body):
 	state = States.IDLE # Replace with function body.
+
+
+func _on_HitTimer_timeout():
+	if state == States.HIT:
+		hit()
+		$HitTimer.start(1)

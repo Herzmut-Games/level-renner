@@ -1,6 +1,9 @@
 extends Node
 
+var max_walljumps = 5
 var walljumps = 5
+var max_health = 5
+var health = 5
 
 var run_started = false
 var run_start_time = 0
@@ -33,3 +36,10 @@ func use_walljump():
 func _on_walljump_timer_timeout():
 	if walljumps < 5:
 		walljumps += 1
+		
+func hit(amount = 1):
+	if health > 1:
+		health = health - amount
+	else:
+		# TODO: Game Over
+		pass
