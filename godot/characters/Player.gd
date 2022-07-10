@@ -54,8 +54,6 @@ func process_movement(delta):
 	change_state()
 
 func change_state():
-	print(velocity)
-	
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
