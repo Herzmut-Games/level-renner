@@ -19,7 +19,7 @@
 [ext_resource path="res://ControlScript.gd" type="Script" id=26]
 [ext_resource path="res://assets/ui/UI - 16x16 UI Tileset with glow.png" type="Texture" id=27]
 [ext_resource path="res://props/StraightRoots.tscn" type="PackedScene" id=28]
-[ext_resource path="res://props/Spike.tscn" type="PackedScene" id=29]
+[ext_resource path="res://props/Trap.tscn" type="PackedScene" id=29]
 
 [sub_resource type="OccluderPolygon2D" id=48]
 polygon = PoolVector2Array( 16, 16, 0, 16, 0, 0, 16, 0 )
@@ -530,7 +530,6 @@ __meta__ = {
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 207, -64.033 )
-frame = 0
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
