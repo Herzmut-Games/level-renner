@@ -42,6 +42,8 @@ func processMovement(delta):
 
 	if is_on_floor() || is_on_ceiling():
 		velocity.y = 0
+	if is_on_wall():
+		velocity.x = clamp(velocity.x, -1, 1)
 	if !is_on_floor():
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 
@@ -51,6 +53,8 @@ func processMovement(delta):
 	changeState()
 
 func changeState():
+	print(velocity)
+	
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
