@@ -8,6 +8,16 @@ export var walk_max_speed = 200
 export var wall_jump_enabled = false
 export var wall_jump_bounce = 0.9
 
+onready var inverion_material = ShaderMaterial.new()
+
+func _ready():
+	inverion_material.shader = preload("res://assets/shaders/color_inversion.gdshader")
+	._ready()
+
+func spin_dir():
+	$AnimatedSprite.material = null if $AnimatedSprite.material else inverion_material
+	.spin_dir()
+
 func processAnimation():
 	.processAnimation()
 
