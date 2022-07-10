@@ -3,7 +3,7 @@ class_name Character
 
 export var chase_velocity = Vector2(50.0, 0)
 export var roam_velocity = Vector2(30, 0)
-export var gravity_line = 190
+export var gravity_line = 0
 
 var velocity = roam_velocity
 var player = null
@@ -33,38 +33,38 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision:
 			emit_signal("collided", collision.collider, self)
-			
+
 func process_movement(delta):
 	pass
-	
+
 func _process(delta):
 	process_animation()
-	
+
 func spin_dir():
 	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	$AnimatedSprite.flip_v = not $AnimatedSprite.flip_v
 	$AnimatedSprite.rotation_degrees = 0
-		
+
 func process_animation():
 	if position.y > gravity_line != $AnimatedSprite.flip_v and not $Tween.is_active():
 		spin_dir()
 
 	$AnimatedSprite.flip_h = velocity.x < 0
-		
+
 func roam():
 	player = null
 	velocity = roam_velocity
 	state = States.ROAM
-	
+
 func chase(body: Node):
 	player = body
 	state = States.CHASE
-	
+
 func attack():
 	state = States.ATTACK
-	
+
 func _on_animation_finished():
 	if state == States.ATTACK:
 		roam()
