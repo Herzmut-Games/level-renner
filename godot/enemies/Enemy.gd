@@ -41,7 +41,16 @@ func processMovement(delta):
 func _process(delta):
 	processAnimation()
 	
+func spin_dir():
+	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, 0.15)
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	$AnimatedSprite.rotation_degrees = 0
+		
 func processAnimation():
+	if position.y > gravity_line != $AnimatedSprite.flip_v :
+		spin_dir()
+
 	$AnimatedSprite.flip_h = velocity.x < 0
 	$AnimatedSprite.flip_v = position.y > gravity_line
 		
