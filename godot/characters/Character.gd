@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name Enemy
+class_name Character
 
 export var chase_velocity = Vector2(50.0, 0)
 export var roam_velocity = Vector2(30, 0)
