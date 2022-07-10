@@ -694,14 +694,18 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 26 )
 
-[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+[node name="WalljumpControl" type="Control" parent="UI/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/WalljumpControl"]
 margin_left = 8.0
 margin_top = 345.0
 margin_right = 60.0
 margin_bottom = 374.0
 color = Color( 0.00392157, 0.00392157, 0.00392157, 0.666667 )
 
-[node name="BackgroundNinePatchRect" type="NinePatchRect" parent="UI/Control"]
+[node name="BackgroundNinePatchRect" type="NinePatchRect" parent="UI/Control/WalljumpControl"]
 margin_left = 6.0
 margin_top = 343.0
 margin_right = 62.0
@@ -713,7 +717,7 @@ patch_margin_top = 4
 patch_margin_right = 3
 patch_margin_bottom = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/BackgroundNinePatchRect"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/WalljumpControl/BackgroundNinePatchRect"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 11.0
@@ -724,3 +728,33 @@ region_rect = Rect2( 63, 32, 6, 16 )
 patch_margin_top = 16
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="TimerControl" type="Control" parent="UI/Control"]
+margin_left = 550.0
+margin_top = 345.0
+margin_right = 590.0
+margin_bottom = 385.0
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/TimerControl"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 72.0
+margin_bottom = 18.0
+color = Color( 0.00392157, 0.00392157, 0.00392157, 0.666667 )
+
+[node name="BackgroundNinePatchRect" type="NinePatchRect" parent="UI/Control/TimerControl"]
+margin_right = 73.0
+margin_bottom = 19.0
+texture = ExtResource( 27 )
+region_rect = Rect2( 211, 66, 42, 44 )
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Label" type="Label" parent="UI/Control/TimerControl/BackgroundNinePatchRect"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 68.0
+margin_bottom = 18.0
+text = "00:00:000"
