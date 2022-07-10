@@ -28,7 +28,7 @@ func gravity_dir():
 
 func _physics_process(delta):
 	processMovement(delta)
-	move_and_slide(velocity, -gravity_dir())
+	move_and_slide_with_snap(velocity, gravity_dir(), -gravity_dir())
 
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
