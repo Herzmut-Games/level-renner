@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
@@ -157,6 +157,35 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "hit"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.001 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "hit", "hit" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "idle"
 length = 0.7
@@ -279,6 +308,8 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=11]
+
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 3
 script = ExtResource( 2 )
@@ -289,7 +320,7 @@ shape = SubResource( 9 )
 
 [node name="AnimatedSprite" parent="." index="1"]
 frames = ExtResource( 3 )
-animation = "run"
+animation = "hit"
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
@@ -297,6 +328,7 @@ anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 3 )
 anims/dash = SubResource( 4 )
 anims/fall = SubResource( 5 )
+anims/hit = SubResource( 10 )
 anims/idle = SubResource( 6 )
 anims/jump = SubResource( 7 )
 anims/run = SubResource( 8 )
@@ -310,3 +342,13 @@ smoothing_enabled = true
 
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
 one_shot = true
+
+[node name="HitboxArea2d" type="Area2D" parent="." index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2d" index="0"]
+shape = SubResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
+
+[connection signal="body_entered" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_entered"]
+[connection signal="body_exited" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_exited"]

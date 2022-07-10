@@ -10,6 +10,8 @@ export var wall_jump_bounce = 0.9
 
 
 onready var inverion_material = ShaderMaterial.new()
+onready var hit_sound = preload("res://assets/sound/Hit_2.wav")
+onready var audio_player = $AudioStreamPlayer
 
 func _ready():
 	inverion_material.shader = preload("res://assets/shaders/color_inversion.gdshader")
@@ -31,6 +33,8 @@ func process_animation():
 			$AnimatedSprite.play("fall")
 		States.JUMP:
 			$AnimatedSprite.play("jump")
+		States.HIT:
+			$AnimatedSprite.play("hit")
 
 func process_movement(delta):
 	var direction = get_movement_direction()
@@ -54,6 +58,8 @@ func process_movement(delta):
 	change_state()
 
 func change_state():
+	if state == States.HIT:
+		return
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
@@ -85,3 +91,13 @@ func enable_walljump():
 func disable_walljump():
 	no_walljump += 1
 
+
+
+func _on_HitboxArea2d_body_entered(body):
+	if body.is_in_group("spike"):
+		audio_player.stream = hit_sound
+		audio_player.play()
+		state = States.HIT
+
+func _on_HitboxArea2d_body_exited(body):
+	state = States.IDLE # Replace with function body.
