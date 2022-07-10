@@ -9,13 +9,13 @@
 [ext_resource path="res://assets/forest/TILESET AUTUMN NIGHT.png" type="Texture" id=7]
 [ext_resource path="res://assets/forest/TREE 1 - NIGHT AUTUMN.png" type="Texture" id=8]
 [ext_resource path="res://assets/forest/TREE 2 - NIGHT AUTUMN.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 5.png" type="Texture" id=11]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 1.png" type="Texture" id=12]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 2.png" type="Texture" id=13]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 3.png" type="Texture" id=14]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 4.png" type="Texture" id=15]
-[ext_resource path="res://enemies/Ghoul.tscn" type="PackedScene" id=16]
+[ext_resource path="res://characters/enemies/Ghoul.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/Lavafall.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/forest/BACKGROUND AUTUMN NIGHT 2.png" type="Texture" id=18]
 [ext_resource path="res://assets/forest/BACKGROUND AUTUMN NIGHT 3.png" type="Texture" id=19]
@@ -657,12 +657,13 @@ region_filter_clip = true
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 201, 127.967 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 200, 256 )
 rotation = 3.14159
+frame = 0
 
 [node name="TileMapBackground" type="TileMap" parent="Level"]
 position = Vector2( 0, 96 )
