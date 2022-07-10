@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://enemies/Ghoul.gd"
+"path": "res://enemies/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
