@@ -1,49 +1,15 @@
-extends KinematicBody2D
-class_name Enemy
-export (PackedScene) var Enemy
+extends Enemy
 
-export var chase_velocity = Vector2(50.0, 0)
-export var walk_velocity = Vector2(30, 0)
-export var gravity_line = 190
-
-var velocity = walk_velocity
-var player = null
-
-signal collided(object, player)
-
-onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-enum States{CHASE, WALK, ATTACK}
-var state = null
-
-func gravity_dir():
-	if position.y < gravity_line:
-		return Vector2.DOWN
-	else:
-		return Vector2.UP
-
-func _physics_process(delta):
-	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
-	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
+func _ready():
+	._ready()
+	$TriggerArea.connect("body_entered", self, "_on_chase_trigger_entered")
+	$TriggerArea.connect("body_exited", self, "_on_chase_trigger_exited")
 	
-	if is_on_floor():
-		velocity.y = 0
-		chase() || walk()
-	else:
-		velocity += Vector2(0, gravity) * gravity_dir() * delta
-		
-	move_and_slide(velocity, -gravity_dir())
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision:
-			emit_signal("collided", collision.collider, self)
-	
-func _process(delta):
-	$AnimatedSprite.flip_h = velocity.x < 0
-	$AnimatedSprite.flip_v = position.y > gravity_line
+func processAnimation():
+	.processAnimation()
 	
 	match state:
-		States.WALK:
+		States.ROAM:
 			$AnimatedSprite.play("walk")
 			$AnimatedSprite.speed_scale = 1.0
 		States.CHASE:
@@ -51,10 +17,26 @@ func _process(delta):
 			$AnimatedSprite.speed_scale = 1.5
 		States.ATTACK:
 			$AnimatedSprite.play("attack")
+			
+func processMovement(delta):
+	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
+	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
 	
-func chase():
+	if is_on_floor():
+		velocity.y = 0
+		match state:
+			States.CHASE:
+				processChase()
+			States.ROAM:
+				processRoam()
+			States.ATTACK:
+				velocity.x = 0
+	else:
+		velocity += Vector2(0, gravity) * gravity_dir() * delta
+	
+func processChase():
 	if !player:
-		return false
+		return
 	
 	var directionToPlayer = position.direction_to(player.position)
 		
@@ -64,39 +46,17 @@ func chase():
 		velocity = Vector2.ZERO
 	else:
 		velocity = directionToPlayer * chase_velocity
-		
-	state = States.CHASE
-	return true
 	
-func walk():
+func processRoam():
 	if !$RayCastLeft.is_colliding():
-		velocity = walk_velocity * Vector2.RIGHT
+		velocity = roam_velocity * Vector2.RIGHT
 	elif !$RayCastRight.is_colliding() :
-		velocity = walk_velocity * Vector2.LEFT
+		velocity = roam_velocity * Vector2.LEFT
+	else:
+		velocity = velocity.normalized() * roam_velocity
 		
-	state = States.WALK
-	
-func attack():
-	state = States.ATTACK
+func _on_chase_trigger_entered(body:Node):
+	chase(body)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	add_to_group("characters")
-	
-	$AnimatedSprite.playing = true
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_Area2D_body_entered(body:Node):
-	player = body
-	pass # Replace with function body.
-
-
-func _on_Area2D_body_exited(_body:Node):
-	player = null
-	pass # Replace with function body.
+func _on_chase_trigger_exited(body:Node):
+	roam()
