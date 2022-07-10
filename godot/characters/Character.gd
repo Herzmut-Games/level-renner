@@ -12,7 +12,7 @@ signal collided(object, player)
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-enum States{CHASE, ROAM, ATTACK}
+enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL}
 var state = States.ROAM
 
 # Called when the node enters the scene tree for the first time.
@@ -28,8 +28,8 @@ func gravity_dir():
 
 func _physics_process(delta):
 	processMovement(delta)
-		
 	move_and_slide(velocity, -gravity_dir())
+
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision:

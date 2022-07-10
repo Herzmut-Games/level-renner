@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/forest/TILESET AUTUMN NIGHT.png" type="Texture" id=7]
 [ext_resource path="res://assets/forest/TREE 1 - NIGHT AUTUMN.png" type="Texture" id=8]
 [ext_resource path="res://assets/forest/TREE 2 - NIGHT AUTUMN.png" type="Texture" id=9]
-[ext_resource path="res://characters/PlayerNew.tscn" type="PackedScene" id=10]
+[ext_resource path="res://characters/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 5.png" type="Texture" id=11]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 1.png" type="Texture" id=12]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 2.png" type="Texture" id=13]
@@ -707,7 +707,6 @@ position = Vector2( 167, 144 )
 
 [node name="Player" parent="Level" instance=ExtResource( 10 )]
 position = Vector2( 63, 140 )
-wall_jump_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
