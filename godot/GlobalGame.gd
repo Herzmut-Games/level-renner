@@ -22,6 +22,11 @@ func init(c, p):
 	player = p
 	start_run()
 	
+func load_level(level, h = 3, wj = 5):
+	get_tree().change_scene(level)
+	health = h
+	walljumps = wj
+	
 func start_run():
 	run_start_time = OS.get_system_time_msecs()
 	
