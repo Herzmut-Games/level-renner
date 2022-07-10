@@ -60,7 +60,7 @@ func process_movement(delta):
 	change_state()
 
 func change_state():
-	if state == States.HIT:
+	if state == States.HIT and $HitTimer.time_left > 0:
 		return
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
@@ -94,22 +94,12 @@ func disable_walljump():
 	no_walljump += 1
 
 func hit():
+	if $HitTimer.time_left > 0:
+		return
+
 	GlobalGame.hit()
 	audio_player.stream = hit_sound
 	audio_player.play()
-
-
-func _on_HitboxArea2d_body_entered(body):
-	if body.is_in_group("spike"):
-		$HitTimer.start(1)
-		state = States.HIT
-		hit()
-
-func _on_HitboxArea2d_body_exited(body):
-	state = States.IDLE # Replace with function body.
-
-
-func _on_HitTimer_timeout():
-	if state == States.HIT:
-		hit()
-		$HitTimer.start(1)
+	
+	state = States.HIT
+	$HitTimer.start(1)

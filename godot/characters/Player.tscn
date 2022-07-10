@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/Player.gd" type="Script" id=2]
@@ -309,15 +309,9 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 6, 8 )
-
 [node name="Player" instance=ExtResource( 1 )]
-collision_layer = 3
+collision_layer = 131
 script = ExtResource( 2 )
-chase_velocity = Vector2( 50, 0 )
-roam_velocity = Vector2( 30, 0 )
-gravity_line = 0
 wall_jump_enabled = true
 
 [node name="CollisionShape2D" parent="." index="0"]
@@ -349,18 +343,8 @@ script = ExtResource( 4 )
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
 one_shot = true
 
-[node name="HitboxArea2d" type="Area2D" parent="." index="6"]
-collision_layer = 128
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea2d" index="0"]
-shape = SubResource( 11 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 volume_db = -13.0
 
-[node name="HitTimer" type="Timer" parent="." index="8"]
-
-[connection signal="body_entered" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_entered"]
-[connection signal="body_exited" from="HitboxArea2d" to="." method="_on_HitboxArea2d_body_exited"]
-[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+[node name="HitTimer" type="Timer" parent="." index="7"]
+one_shot = true

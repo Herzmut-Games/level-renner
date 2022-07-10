@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://characters/Player.gd"
+}, {
+"base": "Sprite",
+"class": "Trap",
+"language": "GDScript",
+"path": "res://props/Trap.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "Enemy": "",
 "Level": "",
 "NoWalljumpArea": "",
-"Player": ""
+"Player": "",
+"Trap": ""
 }
 
 [application]

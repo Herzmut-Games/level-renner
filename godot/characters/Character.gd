@@ -1,12 +1,10 @@
 extends KinematicBody2D
 class_name Character
 
-export var chase_velocity = Vector2(50.0, 0)
-export var roam_velocity = Vector2(30, 0)
 export var gravity_line = 0
 
-var velocity = roam_velocity
-var player = null
+export var velocity = Vector2.ZERO
+var target = null
 
 signal collided(object, player)
 
@@ -39,6 +37,10 @@ func process_movement(delta):
 
 func _process(delta):
 	process_animation()
+	
+	if state == States.ATTACK:
+		yield($AnimatedSprite, "animation_finished")
+		idle()
 
 func spin_dir():
 	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
@@ -53,18 +55,9 @@ func process_animation():
 
 	$AnimatedSprite.flip_h = velocity.x < 0
 
-func roam():
-	player = null
-	velocity = roam_velocity
-	state = States.ROAM
+func idle():
+	state = States.IDLE
 
-func chase(body: Node):
-	player = body
-	state = States.CHASE
-
-func attack():
+func attack(node: Node):
+	target = node
 	state = States.ATTACK
-
-func _on_animation_finished():
-	if state == States.ATTACK:
-		roam()
