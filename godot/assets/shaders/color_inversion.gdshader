@@ -3,12 +3,9 @@ shader_type canvas_item;
 uniform float strength = 0.75;
 
 void fragment() {
-	// get the color of the current fragment 
-	vec4 color = texture(TEXTURE, UV);
-
-	// return if the fragment is see-through
-	if (color.a == 0.0) return;
+	// set the color to its default texture value
+	COLOR = texture(TEXTURE, UV);
 
 	// invert the RGB values of the color
-	COLOR.rgb = vec3(strength) - color.rgb;
+	COLOR.rgb = vec3(strength) - COLOR.rgb;
 }
