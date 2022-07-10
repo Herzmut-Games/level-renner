@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/Trap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/spikes.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 6.5 )
+
+[node name="Spike" instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )
