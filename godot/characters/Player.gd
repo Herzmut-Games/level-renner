@@ -51,12 +51,13 @@ func processMovement(delta):
 	changeState()
 
 func changeState():
-	if velocity.y > 0:
-		state = States.JUMP
-	elif velocity.y < 0:
-		state = States.FALL
-	elif abs(velocity.x) > 0:
-		state = States.RUN
+	if velocity.length() > 0:
+		if velocity.normalized().dot(-gravity_dir()) > 0.1:
+			state = States.JUMP
+		elif velocity.normalized().dot(gravity_dir()) > 0.1:
+			state = States.FALL
+		elif abs(velocity.x) > 0:
+			state = States.RUN
 	else:
 		state = States.IDLE
 
