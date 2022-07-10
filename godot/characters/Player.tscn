@@ -338,7 +338,7 @@ anims/run = SubResource( 8 )
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 position = Vector2( 0, -1 )
 current = true
-limit_top = 0
+limit_top = -200
 limit_bottom = 0
 smoothing_enabled = true
 script = ExtResource( 4 )
