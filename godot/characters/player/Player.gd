@@ -82,7 +82,7 @@ func get_movement_direction() -> float:
 
 func jump():
 	$Jump.use(self) || $Walljump.use(self)
-		
+
 func dash():
 	state = States.DASH
 	$Dash.use(self)
@@ -102,9 +102,12 @@ func hit():
 	if $HitTimer.time_left > 0:
 		return
 
-	GlobalGame.hit()
+	# only ignore the damage, we want to know if we were hit, just not die
+	if not invincible:
+		GlobalGame.hit()
+
 	audio_player.stream = hit_sound
 	audio_player.play()
-	
+
 	state = States.HIT
 	$HitTimer.start(1)
