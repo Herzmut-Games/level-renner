@@ -25,16 +25,22 @@ func process_animation():
 	match state:
 		States.IDLE:
 			$AnimatedSprite.play("idle")
+			$AnimatedSpriteOverworld.play("idle")
 		States.RUN:
 			$AnimatedSprite.play("run")
+			$AnimatedSpriteOverworld.play("run")
 		States.FALL:
 			$AnimatedSprite.play("fall")
+			$AnimatedSpriteOverworld.play("fall")
 		States.JUMP:
 			$AnimatedSprite.play("jump")
+			$AnimatedSpriteOverworld.play("jump")
 		States.HIT:
 			$AnimatedSprite.play("hit")
+			$AnimatedSpriteOverworld.play("hit")
 		States.DASH:
 			$AnimatedSprite.play("jump")
+			$AnimatedSpriteOverworld.play("jump")
 
 func process_movement(delta):
 	var direction = get_movement_direction()
@@ -67,6 +73,7 @@ func change_state():
 		return
 	if state == States.DASH:
 		yield($AnimatedSprite, "animation_finished")
+		yield($AnimatedSpriteOverworld, "animation_finished")
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
