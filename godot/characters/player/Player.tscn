@@ -324,6 +324,10 @@ frames = ExtResource( 3 )
 animation = "hit"
 frame = 1
 
+[node name="AnimatedSpriteOverworld" parent="." index="2"]
+frames = ExtResource( 3 )
+animation = "jump"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 3 )

@@ -7,17 +7,22 @@ func _ready():
 	
 func process_animation():
 	.process_animation()
-	
+
 	match state:
 		States.ROAM:
 			$AnimatedSprite.play("walk")
 			$AnimatedSprite.speed_scale = 1.0
+			$AnimatedSpriteOverworld.play("walk")
+			$AnimatedSpriteOverworld.speed_scale = 1.0
 		States.CHASE:
 			$AnimatedSprite.play("walk")
 			$AnimatedSprite.speed_scale = 1.5
+			$AnimatedSpriteOverworld.play("walk")
+			$AnimatedSpriteOverworld.speed_scale = 1.5
 		States.ATTACK:
 			$AnimatedSprite.play("attack")
-			
+			$AnimatedSpriteOverworld.play("attack")
+
 func process_movement(delta):
 	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
 	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
