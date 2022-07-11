@@ -4,6 +4,8 @@ class_name Character
 export var gravity_line = 0
 
 export var velocity = Vector2.ZERO
+export var invincible = false
+
 var target = null
 
 signal collided(object, player)
@@ -43,7 +45,7 @@ func process_movement(delta):
 
 func _process(delta):
 	process_animation()
-	
+
 	if state == States.ATTACK:
 		yield($AnimatedSprite, "animation_finished")
 		idle()
