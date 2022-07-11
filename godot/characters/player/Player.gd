@@ -7,6 +7,7 @@ export var stop_force = 1300
 export var walk_max_speed = 200
 export var wall_jump_enabled = false
 export var wall_jump_bounce = 0.9
+export var dash_velocity = Vector2(1000, 0)
 
 
 onready var inverion_material = ShaderMaterial.new()
@@ -37,6 +38,8 @@ func process_animation():
 			$AnimatedSprite.play("jump")
 		States.HIT:
 			$AnimatedSprite.play("hit")
+		States.DASH:
+			$AnimatedSprite.play("jump")
 
 func process_movement(delta):
 	var direction = get_movement_direction()
@@ -54,14 +57,18 @@ func process_movement(delta):
 	if !is_on_floor():
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 
-	if  Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		jump()
+	if Input.is_action_just_pressed("dash"):
+		dash()
 
 	change_state()
 
 func change_state():
 	if state == States.HIT and $HitTimer.time_left > 0:
 		return
+	if state == States.DASH:
+		yield($AnimatedSprite, "animation_finished")
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
@@ -76,11 +83,11 @@ func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 
 func jump():
-	if is_on_floor(): #regular jump
-		velocity += gravity_dir() * -jump_speed
-	elif wall_jump_enabled and is_on_wall() and no_walljump == 0 and GlobalGame.walljump_available(): #wall jump
-		velocity = Vector2((-1 if velocity.x > 0 else 1) * walk_max_speed * wall_jump_bounce, 0) + gravity_dir() * -jump_speed / 1.25
-		GlobalGame.use_walljump()
+	$Jump.use(self) || $Walljump.use(self)
+		
+func dash():
+	state = States.DASH
+	$Dash.use(self)
 
 # To prevent race conditions when toggling true/false to set if walljumps are
 # enabled, we add/substract 1 for every area we enter or leave, so no_walljump

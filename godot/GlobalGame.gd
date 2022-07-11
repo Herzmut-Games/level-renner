@@ -2,6 +2,8 @@ extends Node
 
 export var max_walljumps = 5
 export var walljumps = 5
+export var max_dashes = 3
+export var dashes = 3
 export var max_health = 3
 export var health = 3
 
@@ -9,13 +11,10 @@ var run_started = false
 var run_start_time = 0
 
 var camera : Camera2D
-var player : KinematicBody2D
+var player : Player
 
 func _ready():
-	var walljump_timer = Timer.new()
-	walljump_timer.connect("timeout", self, "_on_walljump_timer_timeout")
-	add_child(walljump_timer)
-	walljump_timer.start(2)
+	pass
 	
 func init(c, p):
 	camera = c
@@ -39,16 +38,6 @@ func elapsed_time():
 	var miliseconds = int(elapsed) % 1000
 
 	return "%02d:%02d:%03d" % [minutes, seconds, miliseconds]
-
-func walljump_available():
-	return walljumps > 0
-	
-func use_walljump():
-	walljumps = walljumps - 1
-	
-func _on_walljump_timer_timeout():
-	if walljumps < 5:
-		walljumps += 1
 		
 func hit(amount = 1):
 	camera.shake(0.2,25,6)

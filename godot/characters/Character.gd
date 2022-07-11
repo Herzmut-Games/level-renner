@@ -10,7 +10,7 @@ signal collided(object, player)
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL, HIT}
+enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL, HIT, DASH}
 var state = States.ROAM
 
 # Called when the node enters the scene tree for the first time.
