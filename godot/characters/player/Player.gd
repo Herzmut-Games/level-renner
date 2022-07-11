@@ -2,13 +2,8 @@ extends Character
 class_name Player
 
 export var walk_force = 600
-export var jump_speed = 200
 export var stop_force = 1300
 export var walk_max_speed = 200
-export var wall_jump_enabled = false
-export var wall_jump_bounce = 0.9
-export var dash_velocity = Vector2(1000, 0)
-
 
 onready var inverion_material = ShaderMaterial.new()
 onready var hit_sound = preload("res://assets/sound/Hit_2.wav")
