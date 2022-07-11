@@ -22,6 +22,12 @@ func gravity_dir():
 		return Vector2.DOWN
 	else:
 		return Vector2.UP
+		
+func in_overworld():
+	return gravity_dir() == Vector2.DOWN
+
+func in_underworld():
+	return !in_overworld()
 
 func _physics_process(delta):
 	process_movement(delta)
@@ -52,8 +58,16 @@ func spin_dir():
 func process_animation():
 	if position.y > gravity_line != $AnimatedSprite.flip_v and not $Tween.is_active():
 		spin_dir()
+		
+	if in_overworld():
+		$AnimatedSpriteOverworld.visible = true
+		$AnimatedSprite.visible = false
+	else:
+		$AnimatedSpriteOverworld.visible = false
+		$AnimatedSprite.visible = true
 
 	$AnimatedSprite.flip_h = velocity.x < 0
+	$AnimatedSpriteOverworld.flip_h = velocity.x < 0
 
 func idle():
 	state = States.IDLE
