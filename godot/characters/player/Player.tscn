@@ -356,7 +356,10 @@ volume_db = -13.0
 one_shot = true
 
 [node name="Dash" parent="." index="8" instance=ExtResource( 7 )]
+character_path = NodePath("..")
 
 [node name="Jump" parent="." index="9" instance=ExtResource( 5 )]
+character_path = NodePath("..")
 
 [node name="Walljump" parent="." index="10" instance=ExtResource( 6 )]
+character_path = NodePath("..")

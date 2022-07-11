@@ -12,7 +12,7 @@ onready var sounds = [
 	preload("res://assets/sound/Jump_wall6.wav")
 ]
 
-func use(character: Character):
+func use():
 	if character.is_on_wall() and $SkillCooldown.available(): #wall jump
 		$AudioStreamPlayer.stream = sounds[clamp($SkillCooldown.current_uses-1, 0, sounds.size() -1)]
 		$AudioStreamPlayer.play()

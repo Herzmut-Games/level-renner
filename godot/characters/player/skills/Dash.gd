@@ -3,7 +3,7 @@ class_name Dash
 
 export var dash_speed = 5000
 
-func use(character: Character):
+func use():
 	if $SkillCooldown.available():
 		var direction = character.get_movement_direction()
 		if direction == 0.0:
