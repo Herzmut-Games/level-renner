@@ -14,10 +14,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://characters/Character.gd"
 }, {
+"base": "Skill",
+"class": "Dash",
+"language": "GDScript",
+"path": "res://characters/player/skills/Dash.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://characters/enemies/Enemy.gd"
+}, {
+"base": "Skill",
+"class": "Jump",
+"language": "GDScript",
+"path": "res://characters/player/skills/Jump.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
@@ -32,20 +42,40 @@ _global_script_classes=[ {
 "base": "Character",
 "class": "Player",
 "language": "GDScript",
-"path": "res://characters/Player.gd"
+"path": "res://characters/player/Player.gd"
+}, {
+"base": "Node",
+"class": "Skill",
+"language": "GDScript",
+"path": "res://characters/player/skills/Skill.gd"
+}, {
+"base": "Timer",
+"class": "SkillCooldown",
+"language": "GDScript",
+"path": "res://characters/player/skills/SkillCooldown.gd"
 }, {
 "base": "Node2D",
 "class": "Trap",
 "language": "GDScript",
 "path": "res://props/Trap.gd"
+}, {
+"base": "Skill",
+"class": "Walljump",
+"language": "GDScript",
+"path": "res://characters/player/skills/Walljump.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
+"Dash": "",
 "Enemy": "",
+"Jump": "",
 "Level": "",
 "NoWalljumpArea": "",
 "Player": "",
-"Trap": ""
+"Skill": "",
+"SkillCooldown": "",
+"Trap": "",
+"Walljump": ""
 }
 
 [application]
@@ -94,6 +124,11 @@ jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+dash={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
