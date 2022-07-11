@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://characters/player/skills/Skill.gd" type="Script" id=1]
+[ext_resource path="res://characters/player/skills/Jump.gd" type="Script" id=1]
 
-[node name="Walljump" type="Node"]
+[node name="Jump" type="Node"]
 script = ExtResource( 1 )
