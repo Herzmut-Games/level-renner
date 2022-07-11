@@ -42,7 +42,10 @@ func process_movement(delta):
 	if abs(walk) < walk_force * 0.2 and is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, stop_force * delta)
 	else:
-		velocity.x += walk * delta
+		if velocity.x * walk < 0 and is_on_floor():
+			velocity.x = 0
+		else:
+			velocity.x += walk * delta
 	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
 
 	if is_on_floor() or is_on_ceiling():
