@@ -522,16 +522,16 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 11/z_index = 0
 
 [node name="Main" type="Node2D"]
-script = ExtResource( 24 )
 __meta__ = {
 "_edit_horizontal_guides_": [ -104.0 ]
 }
 
 [node name="Level" type="Node2D" parent="."]
+script = ExtResource( 24 )
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 207, -64.033 )
-frame = 3
+frame = 0
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
