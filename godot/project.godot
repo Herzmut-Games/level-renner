@@ -79,9 +79,9 @@ _global_script_class_icons={
 "Player": "",
 "Skill": "",
 "SkillCooldown": "",
+"TileMapTrap": "",
 "Trap": "",
 "Walljump": ""
-"TileMapTrap": "",
 }
 
 [application]
