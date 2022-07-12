@@ -3,7 +3,6 @@ class_name Dash
 
 export var dash_speed = 5000
 
-
 func _physics_process(delta):
 	if Input.is_action_just_pressed("dash") and $SkillCooldown.available():
 		character.state = Character.States.DASH

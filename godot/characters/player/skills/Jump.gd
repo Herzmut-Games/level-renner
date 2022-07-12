@@ -1,3 +1,4 @@
+tool
 extends Skill
 class_name Jump
 
@@ -7,18 +8,20 @@ export var decay = 200
 
 var jump_muliplier = 0
 
-func _physics_process(delta):
-	jump_muliplier -= decay * delta
-	
-	if not Input.is_action_pressed("jump") or character.state == character.States.FALL:
-		return
-	
-	if Input.is_action_just_pressed("jump") and character.is_on_floor():
+func _unhandled_input(event):
+	if event.is_action_pressed("jump", false, false) and( $RayCastLeft.is_colliding() or $RayCastRight.is_colliding()):
 		$AudioStreamPlayer.play()
 		jump_muliplier = jump_speed
-		
-	if jump_muliplier <= 0:
-		return
+				
+		character.velocity.y = jump_speed * -character.gravity_dir().y
+		character.velocity.y = clamp(character.velocity.y, -max_jump_speed, max_jump_speed)
+		get_tree().set_input_as_handled()
 
-	character.velocity += jump_muliplier * -character.gravity_dir()
-	character.velocity.y = clamp(character.velocity.y, -max_jump_speed, max_jump_speed)
+func _physics_process(delta):
+	jump_muliplier -= decay * delta
+	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * character.gravity_dir().y
+	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * character.gravity_dir().y
+
+	if Input.is_action_pressed("jump") and jump_muliplier >= 0 and character.state != character.States.FALL:
+		character.velocity.y += jump_muliplier * -character.gravity_dir().y
+		character.velocity.y = clamp(character.velocity.y, -max_jump_speed, max_jump_speed)
