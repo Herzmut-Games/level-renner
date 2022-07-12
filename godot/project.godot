@@ -34,11 +34,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://levels/template/LevelTemplate.gd"
 }, {
-"base": "Area2D",
-"class": "NoWalljumpArea",
-"language": "GDScript",
-"path": "res://props/NoWalljumpArea.gd"
-}, {
 "base": "Character",
 "class": "Player",
 "language": "GDScript",
@@ -75,7 +70,6 @@ _global_script_class_icons={
 "Enemy": "",
 "Jump": "",
 "LevelTemplate": "",
-"NoWalljumpArea": "",
 "Player": "",
 "Skill": "",
 "SkillCooldown": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://assets/forest/TILESET SUMMER DAY.png" type="Texture" id=1]
 [ext_resource path="res://assets/forest/TREE 1 - DAY SUMMER.png" type="Texture" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://assets/ui/UI - Ammo 16x16 with glow.png" type="Texture" id=25]
 [ext_resource path="res://levels/template/ControlScript.gd" type="Script" id=26]
 [ext_resource path="res://assets/ui/UI - 16x16 UI Tileset with glow.png" type="Texture" id=27]
-[ext_resource path="res://props/StraightRoots.tscn" type="PackedScene" id=28]
 [ext_resource path="res://props/Spike.tscn" type="PackedScene" id=29]
 
 [sub_resource type="OccluderPolygon2D" id=48]
@@ -537,6 +536,7 @@ playing = true
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 206, 64 )
 rotation = 3.14159
+frame = 3
 
 [node name="Spikes" type="Node2D" parent="Level"]
 position = Vector2( 67, -182 )
@@ -583,25 +583,6 @@ position = Vector2( 141, -64 )
 
 [node name="RootsAndSpikes" type="Node2D" parent="Level"]
 position = Vector2( 6, -192 )
-
-[node name="Straight Roots3" parent="Level/RootsAndSpikes" instance=ExtResource( 28 )]
-position = Vector2( -14, 11 )
-flip_h = true
-
-[node name="Straight Roots" parent="Level/RootsAndSpikes" instance=ExtResource( 28 )]
-position = Vector2( -14, 66 )
-flip_h = true
-
-[node name="Straight Roots2" parent="Level/RootsAndSpikes" instance=ExtResource( 28 )]
-position = Vector2( -14, 118 )
-flip_h = true
-
-[node name="Straight Roots4" parent="Level/RootsAndSpikes" instance=ExtResource( 28 )]
-position = Vector2( 1391, 62 )
-flip_v = true
-
-[node name="Straight Roots5" parent="Level/RootsAndSpikes" instance=ExtResource( 28 )]
-position = Vector2( 1391, 117 )
 
 [node name="DamageRoots" parent="Level/RootsAndSpikes" instance=ExtResource( 12 )]
 position = Vector2( 1713, 93 )

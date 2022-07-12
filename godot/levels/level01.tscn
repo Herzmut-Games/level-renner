@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://levels/template/level-template.tscn" type="PackedScene" id=1]
-[ext_resource path="res://characters/enemies/ghoul/Ghoul.tscn" type="PackedScene" id=2]
+[ext_resource path="res://props/LavaFallTrap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Waterfall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://characters/enemies/ghoul/Ghoul.tscn" type="PackedScene" id=4]
 
 [node name="LevelTemplate" instance=ExtResource( 1 )]
 
@@ -18,3 +20,19 @@ tile_data = PoolIntArray( -589773, -1073741823, 0, -524237, -1073741823, 0, -458
 
 [node name="Ghoul" parent="." index="4" instance=ExtResource( 2 )]
 position = Vector2( 162, -86 )
+[node name="TileMapBackground" parent="TileMaps" index="3"]
+z_index = -1
+tile_data = PoolIntArray( -655351, 7, 0, -524231, 536870921, 0, -524165, 5, 0, -458656, 0, 0, -327614, 2, 0, -262027, 5, 0, -262025, 5, 0, -262023, 536870917, 0, -130955, 536870918, 0, -130953, 536870918, 0, -130951, 6, 0, 131195, 536870918, 0, 196665, 10, 0, 262153, 536870920, 0 )
+
+[node name="Player" parent="." index="2"]
+invincible = true
+
+[node name="Props" type="Node2D" parent="." index="3"]
+
+[node name="LavaFallTrap" parent="Props" index="0" instance=ExtResource( 2 )]
+position = Vector2( 855, 175 )
+
+[node name="Waterfall" parent="Props" index="1" instance=ExtResource( 3 )]
+position = Vector2( 855, -176 )
+frame = 0
+playing = true
