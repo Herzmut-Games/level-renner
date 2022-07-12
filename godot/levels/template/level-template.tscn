@@ -288,6 +288,7 @@ script = ExtResource( 1 )
 tile_set = SubResource( 5 )
 cell_size = Vector2( 16, 16 )
 show_collision = true
+collision_layer = 8
 format = 1
 script = ExtResource( 5 )
 
