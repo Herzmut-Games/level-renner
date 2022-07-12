@@ -8,7 +8,7 @@
 [ext_resource path="res://levels/TileMapTraps.gd" type="Script" id=7]
 [ext_resource path="res://assets/forest/FLOWER 1.png" type="Texture" id=8]
 [ext_resource path="res://characters/player/Player.tscn" type="PackedScene" id=10]
-[ext_resource path="res://props/LevelParallax.tscn" type="PackedScene" id=11]
+[ext_resource path="res://levels/template/LevelParallax.tscn" type="PackedScene" id=11]
 [ext_resource path="res://levels/Level.gd" type="Script" id=16]
 [ext_resource path="res://levels/TileMapLevel.gd" type="Script" id=26]
 
@@ -160,9 +160,9 @@ invincible = true
 
 [node name="Waterfall" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 855, -176 )
-frame = 0
+frame = 3
 playing = true
 
 [node name="LavaFallTrap" parent="Obstacles" instance=ExtResource( 2 )]
 position = Vector2( 855, 176 )
-frame = 2
+frame = 1
