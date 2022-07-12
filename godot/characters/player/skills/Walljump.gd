@@ -11,12 +11,11 @@ onready var sounds = [
 	preload("res://assets/sound/Jump_wall5.wav"),
 	preload("res://assets/sound/Jump_wall6.wav")
 ]
-
-func use():
-	if character.is_on_wall() and $SkillCooldown.available(): #wall jump
+	
+func _physics_process(delta):
+	if Input.is_action_just_pressed("jump") and character.is_on_wall() and $SkillCooldown.available():
 		$AudioStreamPlayer.stream = sounds[clamp($SkillCooldown.current_uses-1, 0, sounds.size() -1)]
 		$AudioStreamPlayer.play()
+
 		character.velocity = Vector2((-1 if character.velocity.x > 0 else 1) * bounce, 0) + character.gravity_dir() * -jump_speed / 1.25
 		$SkillCooldown.use()
-		return true
-	return false

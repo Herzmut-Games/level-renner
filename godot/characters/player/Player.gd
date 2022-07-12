@@ -54,20 +54,6 @@ func process_movement(delta):
 			velocity.x += walk * delta
 	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
 
-	if is_on_floor() and in_overworld() or is_on_ceiling() and in_underworld():
-		velocity.y = clamp(velocity.y, -INF, 0)
-	elif is_on_ceiling() and in_overworld() or is_on_floor() and in_underworld():
-		velocity.y = clamp(velocity.y, 0, INF)
-	if is_on_wall():
-		velocity.x = clamp(velocity.x, -1, 1)
-	if !is_on_floor():
-		velocity += Vector2(0, gravity) * gravity_dir() * delta
-
-	if Input.is_action_pressed("jump"):
-		jump()
-	if Input.is_action_just_pressed("dash"):
-		dash()
-
 	change_state()
 
 func change_state():
@@ -88,13 +74,6 @@ func change_state():
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-
-func jump():
-	$Jump.use() || $Walljump.use()
-
-func dash():
-	state = States.DASH
-	$Dash.use()
 
 # To prevent race conditions when toggling true/false to set if walljumps are
 # enabled, we add/substract 1 for every area we enter or leave, so no_walljump

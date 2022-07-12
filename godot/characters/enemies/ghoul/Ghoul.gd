@@ -28,7 +28,6 @@ func process_movement(delta):
 	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
 	
 	if is_on_floor():
-		velocity.y = 0
 		match state:
 			States.CHASE:
 				process_chase()
@@ -36,8 +35,6 @@ func process_movement(delta):
 				process_roam()
 			States.ATTACK:
 				process_attack()
-	else:
-		velocity += Vector2(0, gravity) * gravity_dir() * delta
 	
 func process_chase():
 	if !target:

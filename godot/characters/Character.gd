@@ -39,6 +39,15 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		if collision:
 			emit_signal("collided", collision.collider, self)
+			
+	if is_on_floor() and in_overworld() or is_on_ceiling() and in_underworld():
+		velocity.y = clamp(velocity.y, -INF, 0)
+	elif is_on_ceiling() and in_overworld() or is_on_floor() and in_underworld():
+		velocity.y = clamp(velocity.y, 0, INF)
+	if is_on_wall():
+		velocity.x = clamp(velocity.x, -1, 1)
+	if !is_on_floor():
+		velocity += Vector2(0, gravity) * gravity_dir() * delta
 
 func process_movement(delta):
 	pass

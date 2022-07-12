@@ -7,19 +7,18 @@ export var decay = 200
 
 var jump_muliplier = 0
 
-func use():
-	if character.state == Character.States.FALL or jump_muliplier <= 0:
-		return false
+func _physics_process(delta):
+	jump_muliplier -= decay * delta
 	
-	if jump_muliplier == jump_speed:
+	if not Input.is_action_pressed("jump") or character.state == character.States.FALL:
+		return
+	
+	if Input.is_action_just_pressed("jump") and character.is_on_floor():
 		$AudioStreamPlayer.play()
+		jump_muliplier = jump_speed
+		
+	if jump_muliplier <= 0:
+		return
 
 	character.velocity += jump_muliplier * -character.gravity_dir()
 	character.velocity.y = clamp(character.velocity.y, -max_jump_speed, max_jump_speed)
-	return true
-
-func _process(delta):
-	if character.is_on_floor():
-		jump_muliplier = jump_speed
-	elif jump_muliplier >= 0:
-		jump_muliplier -= decay * delta

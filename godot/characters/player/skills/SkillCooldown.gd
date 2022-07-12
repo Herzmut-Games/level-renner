@@ -16,4 +16,4 @@ func available():
 	return current_uses <= max_uses
 	
 func _timeout():
-	current_uses = min(0, current_uses-1)
+	current_uses = max(0, current_uses-1)
