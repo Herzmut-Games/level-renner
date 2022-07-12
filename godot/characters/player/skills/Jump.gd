@@ -1,4 +1,3 @@
-tool
 extends Skill
 class_name Jump
 
@@ -12,7 +11,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("jump", false, false) and( $RayCastLeft.is_colliding() or $RayCastRight.is_colliding()):
 		$AudioStreamPlayer.play()
 		jump_muliplier = jump_speed
-				
+
 		character.velocity.y = jump_speed * -character.gravity_dir().y
 		character.velocity.y = clamp(character.velocity.y, -max_jump_speed, max_jump_speed)
 		get_tree().set_input_as_handled()
