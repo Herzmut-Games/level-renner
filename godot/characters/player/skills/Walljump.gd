@@ -18,9 +18,9 @@ func _unhandled_input(event):
 		var colliderRight =  $RayCastRight.get_collider()
 
 		var collider = null
-		if not(colliderLeft == null or colliderLeft.get_collision_layer() & 0x4):
+		if not(colliderLeft == null or colliderLeft.get_collision_layer() & 0b10000):
 			collider = colliderLeft
-		elif not(colliderRight == null or colliderRight.get_collision_layer() & 0x4):
+		elif not(colliderRight == null or colliderRight.get_collision_layer() & 0b10000):
 			collider = colliderRight
 		else:
 			return

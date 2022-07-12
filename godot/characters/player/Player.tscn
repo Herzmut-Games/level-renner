@@ -363,24 +363,24 @@ character_path = NodePath("..")
 character_path = NodePath("..")
 
 [node name="RayCastLeft" parent="Walljump" index="2"]
-position = Vector2( -6.53, 0 )
-cast_to = Vector2( -5, 0 )
+position = Vector2( 6.53, 0 )
+cast_to = Vector2( -18, 0 )
 
 [node name="RayCastRight" parent="Walljump" index="3"]
-position = Vector2( 6.534, 0 )
-cast_to = Vector2( 5, 0 )
+position = Vector2( -6.534, 0 )
+cast_to = Vector2( 18, 0 )
 
 [node name="Jump" parent="." index="10" instance=ExtResource( 5 )]
 character_path = NodePath("..")
 
 [node name="RayCastRight" parent="Jump" index="1"]
-position = Vector2( 6.4, 9 )
-cast_to = Vector2( 0, 10 )
+position = Vector2( 6.4, -9 )
+cast_to = Vector2( 0, 28 )
 collision_mask = 1
 
 [node name="RayCastLeft" parent="Jump" index="2"]
-position = Vector2( -6.4, 9 )
-cast_to = Vector2( 0, 10 )
+position = Vector2( -6.4, -9 )
+cast_to = Vector2( 0, 28 )
 collision_mask = 1
 
 [editable path="Walljump"]

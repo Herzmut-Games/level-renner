@@ -296,8 +296,8 @@ script = ExtResource( 5 )
 tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )
 show_collision = true
-collision_layer = 8
-collision_mask = 8
+collision_layer = 16
+collision_mask = 0
 format = 1
 
 [node name="TileMapBackground" type="TileMap" parent="TileMaps"]
