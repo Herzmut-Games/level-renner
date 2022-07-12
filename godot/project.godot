@@ -30,11 +30,6 @@ _global_script_classes=[ {
 "path": "res://characters/player/skills/Jump.gd"
 }, {
 "base": "Node2D",
-"class": "Level",
-"language": "GDScript",
-"path": "res://levels/Level.gd"
-}, {
-"base": "Node2D",
 "class": "LevelTemplate",
 "language": "GDScript",
 "path": "res://levels/template/LevelTemplate.gd"
@@ -79,7 +74,6 @@ _global_script_class_icons={
 "Dash": "",
 "Enemy": "",
 "Jump": "",
-"Level": "",
 "LevelTemplate": "",
 "NoWalljumpArea": "",
 "Player": "",
