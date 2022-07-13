@@ -81,7 +81,10 @@ func process_movement(delta):
 	var direction = get_movement_direction()
 	var walk = walk_force() * direction
 	if state != States.DASH:
-		if abs(walk) < walk_force() * 0.2 or velocity.x * walk < 0:
+		if (                                                      # stop when
+			(is_on_floor() and abs(walk) < walk_force() * 0.2) or # on floor and no walk butten is pressed
+			velocity.x * walk < 0                                 # or direction changed
+		):
 			velocity.x = move_toward(velocity.x, 0, stop_force() * delta)
 		else:
 			velocity.x += walk * delta
