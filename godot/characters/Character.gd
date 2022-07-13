@@ -1,14 +1,16 @@
 extends KinematicBody2D
 class_name Character
 
-export var gravity_line = 0
+const gravity_line = 0
 
 export var velocity = Vector2.ZERO
 export var invincible = false
+export var switch_world_min_speed = 150
 
 var target = null
 
 signal collided(object, player)
+signal world_switched()
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -33,7 +35,20 @@ func in_underworld():
 
 func _physics_process(delta):
 	process_movement(delta)
+	
+	var y_before = position.y
 	move_and_slide_with_snap(velocity, gravity_dir(), -gravity_dir())
+	var y_after = position.y
+	
+	if y_before * y_after < 0:
+		emit_signal("world_switched")
+		
+		# clamp min speed when switching worlds so character doesn't get stuck
+		if y_after > 0:
+			velocity.y = clamp(velocity.y, switch_world_min_speed, INF)
+		else:
+			velocity.y = clamp(velocity.y, -INF, -switch_world_min_speed)
+			
 
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
