@@ -1,9 +1,17 @@
 extends Character
 class_name Player
 
-export var walk_force = 600
-export var stop_force = 1300
-export var walk_max_speed = 200
+export var walk_force_ground = 800
+export var walk_force_air = 800
+
+export var stop_force_ground = 1800
+export var stop_force_air = 1500
+
+export var stop_force_speed_cap_ground = 5000
+export var stop_force_speed_cap_air = 3000
+
+export var speed_cap_ground = 200
+export var speed_cap_air = 200
 
 onready var inverion_material = ShaderMaterial.new()
 onready var hit_sound = preload("res://assets/sound/Hit_2.wav")
@@ -39,21 +47,51 @@ func process_animation():
 			$AnimatedSprite.play("hit")
 			$AnimatedSpriteOverworld.play("hit")
 		States.DASH:
-			$AnimatedSprite.play("jump")
-			$AnimatedSpriteOverworld.play("jump")
+			$AnimatedSprite.play("dash")
+			$AnimatedSpriteOverworld.play("dash")
+			
+func walk_force():
+	if is_on_floor():
+		return walk_force_ground
+	else:
+		return walk_force_air
+			
+func stop_force():
+	if is_on_floor():
+		return stop_force_ground
+	else:
+		return stop_force_air
+		
+func speed_cap():
+	if is_on_floor():
+		return speed_cap_ground
+	else:
+		return speed_cap_air
+		
+func stop_force_speed_cap():
+	if is_on_floor():
+		return stop_force_speed_cap_ground
+	else:
+		return stop_force_speed_cap_air
+		
+func velocity_x_direction():
+	return 1 if velocity.x >= 0 else -1
 
 func process_movement(delta):
 	var direction = get_movement_direction()
-	var walk = walk_force * direction
-	if abs(walk) < walk_force * 0.2 and is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, stop_force * delta)
-	else:
-		if velocity.x * walk < 0 and is_on_floor():
-			velocity.x = 0
+	var walk = walk_force() * direction
+	if state != States.DASH:
+		if abs(walk) < walk_force() * 0.2 or velocity.x * walk < 0:
+			velocity.x = move_toward(velocity.x, 0, stop_force() * delta)
 		else:
 			velocity.x += walk * delta
-	velocity.x = clamp(velocity.x, -walk_max_speed, walk_max_speed)
-
+	
+		if abs(velocity.x) > speed_cap():
+			velocity.x = move_toward(
+				velocity.x, 
+				velocity_x_direction() * speed_cap(), 
+				stop_force_speed_cap() * delta
+			)
 	change_state()
 
 func change_state():

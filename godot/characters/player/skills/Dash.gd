@@ -1,7 +1,7 @@
 extends Skill
 class_name Dash
 
-export var dash_speed = 5000
+export var dash_speed = 500
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("dash") and $SkillCooldown.available():
