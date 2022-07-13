@@ -113,17 +113,6 @@ func change_state():
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 
-# To prevent race conditions when toggling true/false to set if walljumps are
-# enabled, we add/substract 1 for every area we enter or leave, so no_walljump
-# will be > 0 if transitioning between two protected areas
-var no_walljump = 0
-
-func enable_walljump():
-	no_walljump -= 1
-
-func disable_walljump():
-	no_walljump += 1
-
 func hit():
 	if $HitTimer.time_left > 0:
 		return
