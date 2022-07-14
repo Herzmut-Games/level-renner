@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://characters/player/PlayerSprite.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/fonts/Flavor_Text.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/title.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/V.png" type="Texture" id=4]
+[ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 4.png" type="Texture" id=5]
+[ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 1.png" type="Texture" id=6]
+[ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 2.png" type="Texture" id=7]
+[ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 5.png" type="Texture" id=8]
+[ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 3.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Menu.gd" type="Script" id=10]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 24.0
+margin_top = 6.0
+margin_right = 24.0
+margin_bottom = 6.0
+rect_pivot_offset = Vector2( -384, -37 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 10 )
+
+[node name="Start" type="Button" parent="."]
+margin_left = 246.0
+margin_top = 339.0
+margin_right = 379.0
+margin_bottom = 363.0
+custom_fonts/font = ExtResource( 2 )
+text = "Embark on your journey"
+
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 311, 291 )
+scale = Vector2( 5, 5 )
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="LEVEL" type="Control" parent="."]
+margin_left = 221.0
+margin_top = 30.0
+margin_right = 403.0
+margin_bottom = 84.0
+
+[node name="V" type="Sprite" parent="LEVEL"]
+position = Vector2( 90, -36 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 4 )
+
+[node name="LE" type="Label" parent="LEVEL"]
+margin_right = 89.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "LE"
+
+[node name="EL" type="Label" parent="LEVEL"]
+margin_left = 180.0
+margin_right = 269.0
+margin_bottom = 64.0
+rect_scale = Vector2( -1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "LE"
+
+[node name="RENNER" type="Control" parent="."]
+margin_left = 224.0
+margin_top = 81.0
+margin_right = 406.0
+margin_bottom = 135.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="REN" type="Label" parent="RENNER"]
+margin_right = 89.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "REN"
+
+[node name="NER" type="Label" parent="RENNER"]
+margin_left = 180.0
+margin_right = 269.0
+margin_bottom = 64.0
+rect_scale = Vector2( -1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "REN"
+
+[node name="ParallaxBackgroundOverworld" type="ParallaxBackground" parent="."]
+offset = Vector2( -400, 395 )
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, -400, 395 )
+
+[node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackgroundOverworld/ParallaxBackground"]
+margin_top = -200.0
+margin_right = 1214.1
+color = Color( 0.745098, 0.890196, 0.901961, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer"]
+position = Vector2( -176, -216 )
+texture = ExtResource( 8 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1200, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer2"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer3"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 9 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer4"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 400, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer5"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="DEBUG" type="Label" parent="."]
+margin_left = -17.0
+margin_top = 307.0
+margin_right = 84.0
+margin_bottom = 372.0
+text = "DEBUG
+F1 - Old Main
+F2 - Level 1
+"
+
+[connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
