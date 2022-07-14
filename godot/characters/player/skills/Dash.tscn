@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://characters/player/skills/Dash.gd" type="Script" id=1]
 [ext_resource path="res://characters/player/skills/SkillCooldown.gd" type="Script" id=2]
+[ext_resource path="res://assets/sound/dash_pixel.mp3" type="AudioStream" id=3]
 
 [node name="Dash" type="Node"]
 script = ExtResource( 1 )
@@ -10,3 +11,8 @@ script = ExtResource( 1 )
 wait_time = 2.0
 autostart = true
 script = ExtResource( 2 )
+
+[node name="ImpactSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -16.0
+bus = "Effects"
