@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://levels/template/TileMapLevel.gd" type="Script" id=1]
 [ext_resource path="res://assets/forest/FLOWER 1.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/ui/UI - Ammo 16x16 with glow.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/UI - 16x16 UI Tileset with glow.png" type="Texture" id=11]
 [ext_resource path="res://levels/template/LevelTemplate.gd" type="Script" id=12]
+[ext_resource path="res://assets/fonts/Flavor_Text.tres" type="DynamicFont" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 7.99178, 3.00705, 16, 16, 0, 16, 0, 16 )
@@ -312,6 +313,7 @@ format = 1
 position = Vector2( 38, -42 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+pause_mode = 2
 
 [node name="Control" type="Control" parent="UI"]
 margin_right = 40.0
@@ -379,3 +381,29 @@ texture = ExtResource( 11 )
 region_rect = Rect2( 287, 245, 25, 5 )
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="Messages" type="Control" parent="UI"]
+margin_right = 640.0
+margin_bottom = 390.0
+
+[node name="TopLeft" type="Label" parent="UI/Messages"]
+margin_left = 12.0
+margin_top = 10.0
+margin_right = 629.0
+margin_bottom = 28.0
+custom_fonts/font = ExtResource( 13 )
+
+[node name="Center" type="Label" parent="UI/Messages"]
+margin_left = 62.0
+margin_top = 190.0
+margin_right = 592.0
+margin_bottom = 208.0
+custom_fonts/font = ExtResource( 13 )
+align = 1
+
+[node name="BottemLeft" type="Label" parent="UI/Messages"]
+margin_left = 132.0
+margin_top = 351.0
+margin_right = 623.0
+margin_bottom = 369.0
+custom_fonts/font = ExtResource( 13 )

@@ -9,6 +9,8 @@ export var health = 3
 
 var run_started = false
 var run_start_time = 0
+var run_stop_time = false
+var timer_paused_offset = 0
 
 var camera : Camera2D
 var player : Player
@@ -29,9 +31,12 @@ func load_level(level, h = 3, wj = 5):
 func start_run():
 	run_start_time = OS.get_system_time_msecs()
 	
+func stop_run():
+	run_stop_time = OS.get_system_time_msecs()
+
 func elapsed_time():
-	var time_now = OS.get_system_time_msecs()
-	var elapsed = time_now - run_start_time
+	var time_now = run_stop_time if (run_stop_time) else OS.get_system_time_msecs()
+	var elapsed = time_now - run_start_time - timer_paused_offset
 	
 	var minutes = int(elapsed / 60 / 1000)
 	var seconds = int(elapsed / 1000) % 60

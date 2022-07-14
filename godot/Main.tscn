@@ -531,13 +531,12 @@ script = ExtResource( 13 )
 
 [node name="Waterfall" parent="Level" instance=ExtResource( 5 )]
 position = Vector2( 207, -64.033 )
-frame = 4
 playing = true
 
 [node name="Lavafall" parent="Level" instance=ExtResource( 17 )]
 position = Vector2( 206, 64 )
 rotation = 3.14159
-frame = 3
+frame = 1
 
 [node name="Spikes" type="Node2D" parent="Level"]
 position = Vector2( 67, -182 )
