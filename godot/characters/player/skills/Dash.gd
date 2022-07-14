@@ -5,6 +5,7 @@ export var dash_speed = 500
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("dash") and $SkillCooldown.available():
+		$ImpactSound.play()
 		character.state = Character.States.DASH
 		var direction = character.get_movement_direction()
 		if direction == 0.0:
