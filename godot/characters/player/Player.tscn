@@ -353,7 +353,7 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 volume_db = -13.0
 
-[node name="HitTimer" type="Timer" parent="." index="7"]
+[node name="HitCooldownTimer" type="Timer" parent="." index="7"]
 one_shot = true
 
 [node name="Dash" parent="." index="8" instance=ExtResource( 7 )]

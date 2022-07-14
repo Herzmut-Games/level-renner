@@ -43,13 +43,22 @@ func process_animation():
 		States.JUMP:
 			$AnimatedSprite.play("jump")
 			$AnimatedSpriteOverworld.play("jump")
-		States.HIT:
-			$AnimatedSprite.play("hit")
-			$AnimatedSpriteOverworld.play("hit")
 		States.DASH:
 			$AnimatedSprite.play("dash")
 			$AnimatedSpriteOverworld.play("dash")
 			
+
+func play_hit_animation() -> void:
+	var anim_sprite = $AnimatedSprite
+	var anim_sprite_ov = $AnimatedSpriteOverworld
+	for _i in range(5):
+		anim_sprite.material = null if anim_sprite.material else inverion_material
+		anim_sprite_ov.material = null if anim_sprite_ov.material else inverion_material
+		yield(get_tree().create_timer(.2), "timeout")
+	var upside_down = position.y > gravity_line
+	anim_sprite.material = inverion_material if upside_down else null
+	anim_sprite_ov.material = null
+
 func walk_force():
 	if is_on_floor():
 		return walk_force_ground
@@ -98,8 +107,6 @@ func process_movement(delta):
 	change_state()
 
 func change_state():
-	if state == States.HIT and $HitTimer.time_left > 0:
-		return
 	if state == States.DASH:
 		yield($AnimatedSprite, "animation_finished")
 		yield($AnimatedSpriteOverworld, "animation_finished")
@@ -117,7 +124,7 @@ func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 
 func hit():
-	if $HitTimer.time_left > 0:
+	if $HitCooldownTimer.time_left > 0:
 		return
 
 	# only ignore the damage, we want to know if we were hit, just not die
@@ -127,5 +134,5 @@ func hit():
 	audio_player.stream = hit_sound
 	audio_player.play()
 
-	state = States.HIT
-	$HitTimer.start(1)
+	play_hit_animation()
+	$HitCooldownTimer.start(1)
