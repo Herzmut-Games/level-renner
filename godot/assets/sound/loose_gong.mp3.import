@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/loose_gong.mp3-16a74bb8840939c8a94dc7a32c605686.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/loose_gong.mp3"
+dest_files=[ "res://.import/loose_gong.mp3-16a74bb8840939c8a94dc7a32c605686.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
