@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://assets/forest/TILESET SUMMER DAY.png" type="Texture" id=1]
 [ext_resource path="res://assets/forest/TREE 1 - DAY SUMMER.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://levels/template/LevelParallax.tscn" type="PackedScene" id=11]
 [ext_resource path="res://props/DamageRootTrap.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/template/LevelTemplate.gd" type="Script" id=13]
+[ext_resource path="res://assets/music/pixelnoise.mp3" type="AudioStream" id=14]
 [ext_resource path="res://characters/enemies/ghoul/Ghoul.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/Lavafall.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/spikes.png" type="Texture" id=23]
@@ -668,3 +669,9 @@ texture = ExtResource( 27 )
 region_rect = Rect2( 287, 245, 25, 5 )
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -10.0
+autoplay = true
+bus = "Music"
