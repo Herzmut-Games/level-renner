@@ -671,6 +671,6 @@ axis_stretch_vertical = 1
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-volume_db = -10.0
+volume_db = -14.0
 autoplay = true
 bus = "Music"
