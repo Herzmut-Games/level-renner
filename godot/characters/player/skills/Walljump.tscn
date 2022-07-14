@@ -15,6 +15,7 @@ script = ExtResource( 3 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -16.0
+bus = "Effects"
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 enabled = true
