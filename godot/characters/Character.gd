@@ -13,6 +13,7 @@ signal collided(object, player)
 signal world_switched()
 
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+onready var swap_impact_sound = preload("res://assets/sound/side_switch.mp3")
 
 enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL, HIT, DASH}
 var state = States.ROAM
@@ -42,6 +43,8 @@ func _physics_process(delta):
 	
 	if y_before * y_after < 0:
 		emit_signal("world_switched")
+		$ImpactSound.stream = swap_impact_sound
+		$ImpactSound.play()
 		
 		# clamp min speed when switching worlds so character doesn't get stuck
 		if y_after > 0:

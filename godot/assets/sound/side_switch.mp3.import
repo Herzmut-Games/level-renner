@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/side_switch.mp3-338e4dd288e6328f5293c996b30124b8.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/side_switch.mp3"
+dest_files=[ "res://.import/side_switch.mp3-338e4dd288e6328f5293c996b30124b8.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
