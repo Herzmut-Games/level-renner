@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://characters/player/skills/Jump.tscn" type="PackedScene" id=5]
 [ext_resource path="res://characters/player/skills/Walljump.tscn" type="PackedScene" id=6]
 [ext_resource path="res://characters/player/skills/Dash.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 6.5, 9 )
@@ -346,6 +347,13 @@ limit_top = -200
 limit_bottom = 0
 smoothing_enabled = true
 script = ExtResource( 4 )
+
+[node name="PauseMenu" parent="Camera2D" index="0" instance=ExtResource( 8 )]
+visible = false
+margin_left = -321.0
+margin_top = -202.0
+margin_right = 321.0
+margin_bottom = 182.0
 
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
 one_shot = true
