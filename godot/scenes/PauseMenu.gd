@@ -4,11 +4,11 @@ export var enabled: bool = true
 
 func show():
 	.show()
-	$CanvasLayer/CenterContainer.show()
+	$CanvasLayer/Control.show()
 
 func hide():
 	.hide()
-	$CanvasLayer/CenterContainer.hide()
+	$CanvasLayer/Control.hide()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("escape") and enabled:
