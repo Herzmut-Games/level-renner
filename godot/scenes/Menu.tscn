@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/player/PlayerSprite.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://assets/fonts/Flavor_Text.tres" type="DynamicFont" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=10]
 [ext_resource path="res://assets/ui/speaker_off.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/speaker_on.png" type="Texture" id=12]
+[ext_resource path="res://assets/music/pixelnoise_menu_loop2.mp3" type="AudioStream" id=13]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -183,6 +184,12 @@ toggle_mode = true
 shortcut_in_tooltip = false
 texture_normal = ExtResource( 12 )
 texture_pressed = ExtResource( 11 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -16.0
+autoplay = true
+bus = "Music"
 
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="MuteButton" to="." method="_on_MuteButton_pressed"]
