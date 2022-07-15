@@ -15,10 +15,15 @@ func _ready():
 func _on_LevelEnd_body_entered(body):
 	GlobalGame.stop_run()
 	get_tree().paused = true
-	$UI/Messages/Center.text = "Tutorial completed"
-	yield(get_tree().create_timer(5.0), "timeout")
-	$UI/Messages/Center.text = ""
-	GlobalGame.load_level("res://levels/level01.tscn")
+	
+	var popup = $UI/LevelDone
+	popup.level_done(level_score)
+	yield(popup, "popup_hide")
+	
+	if popup.choice == GlobalGame.POPUP.NEXT:
+		GlobalGame.load_level("res://levels/level01.tscn")
+	else:
+		GlobalGame.load_level("res://levels/level00.tscn")
 
 func _on_Dash_body_entered(body):
 	get_tree().paused = true
