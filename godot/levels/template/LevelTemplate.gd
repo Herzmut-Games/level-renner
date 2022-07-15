@@ -1,6 +1,8 @@
 extends Node2D
 class_name LevelTemplate
 
+export(Resource) onready var level_score
+
 func _ready():
 	get_tree().call_group("characters", "connect", "collided", self, "character_collision")
 	get_tree().call_group("traps", "connect", "collided", self, "trap_collision")
