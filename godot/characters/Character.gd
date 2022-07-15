@@ -38,7 +38,7 @@ func _physics_process(delta):
 	process_movement(delta)
 	
 	var y_before = position.y
-	move_and_slide_with_snap(velocity, gravity_dir(), -gravity_dir())
+	var _velocity = move_and_slide_with_snap(velocity, gravity_dir(), -gravity_dir())
 	var y_after = position.y
 	
 	if y_before * y_after < 0:
@@ -67,10 +67,10 @@ func _physics_process(delta):
 	if !is_on_floor():
 		velocity += Vector2(0, gravity) * gravity_dir() * delta
 
-func process_movement(delta):
+func process_movement(_delta):
 	pass
 
-func _process(delta):
+func _process(_delta):
 	process_animation()
 
 	if state == States.ATTACK:

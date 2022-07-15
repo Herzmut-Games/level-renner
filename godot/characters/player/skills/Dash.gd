@@ -3,7 +3,7 @@ class_name Dash
 
 export var dash_speed = 500
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("dash") and $SkillCooldown.available():
 		$ImpactSound.play()
 		character.state = Character.States.DASH

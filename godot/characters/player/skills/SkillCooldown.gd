@@ -5,7 +5,7 @@ export var max_uses = 5;
 var current_uses = 0;
 
 func _ready():
-	self.connect("timeout", self, "_timeout")
+	var _error = self.connect("timeout", self, "_timeout")
 
 func use():
 	if current_uses == max_uses:

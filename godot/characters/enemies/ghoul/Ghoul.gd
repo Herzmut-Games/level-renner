@@ -2,8 +2,8 @@ extends Enemy
 
 func _ready():
 	._ready()
-	$TriggerArea.connect("body_entered", self, "_on_chase_trigger_entered")
-	$TriggerArea.connect("body_exited", self, "_on_chase_trigger_exited")
+	var _error = $TriggerArea.connect("body_entered", self, "_on_chase_trigger_entered")
+	_error = $TriggerArea.connect("body_exited", self, "_on_chase_trigger_exited")
 	
 func process_animation():
 	.process_animation()
@@ -23,7 +23,7 @@ func process_animation():
 			$AnimatedSprite.play("attack")
 			$AnimatedSpriteOverworld.play("attack")
 
-func process_movement(delta):
+func process_movement(_delta):
 	$RayCastLeft.cast_to.y = abs($RayCastLeft.cast_to.y) * gravity_dir().y
 	$RayCastRight.cast_to.y = abs($RayCastRight.cast_to.y) * gravity_dir().y
 	
@@ -66,5 +66,5 @@ func idle():
 func _on_chase_trigger_entered(body:Node):
 	chase(body)
 
-func _on_chase_trigger_exited(body:Node):
+func _on_chase_trigger_exited(_body:Node):
 	roam()

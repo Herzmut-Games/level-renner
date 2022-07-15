@@ -24,7 +24,7 @@ func init(c, p):
 	start_run()
 	
 func load_level(level, h = 3, wj = 5):
-	get_tree().change_scene(level)
+	var _error = get_tree().change_scene(level)
 	health = h
 	walljumps = wj
 	
@@ -50,6 +50,6 @@ func hit(amount = 1):
 	if health <= 0:
 		health = 0
 		
-		get_tree().change_scene("res://scenes/GameOver.tscn")
+		var _error = get_tree().change_scene("res://scenes/GameOver.tscn")
 		# TODO: Game Over
 		pass
