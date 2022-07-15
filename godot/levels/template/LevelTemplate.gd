@@ -14,8 +14,5 @@ func trap_collision(character, object):
 
 func character_collision(object, character):
 	if character is Player:
-		if object is Enemy:
-			object.attack(character)
-			character.hit()
 		if object.is_in_group("traps"):
 			character.hit()
