@@ -1,14 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://assets/shaders/trap_shine.gdshader" type="Shader" id=1]
 [ext_resource path="res://props/Trap.gd" type="Script" id=2]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 1 )
-shader_param/color = Color( 1, 0.5, 0.5, 1 )
-
 [node name="Trap" type="Sprite"]
-material = SubResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 2 )
