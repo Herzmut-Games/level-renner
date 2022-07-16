@@ -17,7 +17,6 @@ func _on_LevelEnd_body_entered(body):
 	yield(popup, "popup_hide")
 	
 	if popup.choice == GlobalGame.POPUP.NEXT:
-		# GlobalGame.load_level("res://levels/level02.tscn")
-		GlobalGame.load_level("res://scenes/Menu.tscn")
+		GlobalGame.load_level("res://levels/level02.tscn")
 	else:
 		GlobalGame.load_level("res://levels/level01.tscn")
