@@ -3,10 +3,6 @@ class_name Attack
 
 var last_state = null
 
-func _ready():
-	character.get_node("AnimatedSprite").connect("animation_finished", self, "finish_attack")
-	character.get_node("AnimatedSpriteOverworld").connect("animation_finished", self, "finish_attack")
-
 func use():
 	if $SkillCooldown.available():
 		character.state = Character.States.ATTACK

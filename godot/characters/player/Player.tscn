@@ -366,15 +366,24 @@ character_path = NodePath("..")
 [node name="Walljump" parent="." index="9" instance=ExtResource( 6 )]
 character_path = NodePath("..")
 
-[node name="RayCastLeft" parent="Walljump" index="2"]
-position = Vector2( 6.53, 0 )
+[node name="RayCastLeftTop" parent="Walljump" index="2"]
+position = Vector2( 6.53, -9 )
 cast_to = Vector2( -18, 0 )
 
-[node name="RayCastRight" parent="Walljump" index="3"]
-position = Vector2( -6.534, 0 )
+[node name="RayCastLeftBottom" parent="Walljump" index="3"]
+position = Vector2( 6.53, 9 )
+cast_to = Vector2( -18, 0 )
+
+[node name="RayCastRightTop" parent="Walljump" index="4"]
+position = Vector2( -6.53, -9 )
+cast_to = Vector2( 18, 0 )
+
+[node name="RayCastRightBottom" parent="Walljump" index="5"]
+position = Vector2( -6.53, 9 )
 cast_to = Vector2( 18, 0 )
 
 [node name="Jump" parent="." index="10" instance=ExtResource( 5 )]
+visible = false
 character_path = NodePath("..")
 
 [node name="RayCastRight" parent="Jump" index="1"]
