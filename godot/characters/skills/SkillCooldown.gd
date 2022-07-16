@@ -8,12 +8,11 @@ func _ready():
 	var _error = self.connect("timeout", self, "_timeout")
 
 func use():
-	if current_uses == max_uses:
-		self.start()
 	current_uses +=1
+	self.start() # reset timer
 
 func available():
-	return current_uses <= max_uses
+	return current_uses < max_uses
 	
 func _timeout():
 	current_uses = max(0, current_uses-1)
