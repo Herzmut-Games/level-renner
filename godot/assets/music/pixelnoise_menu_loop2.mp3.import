@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/pixelnoise_menu_loop2.mp3-31903112a5b8acbb7d0589716b9f86d8.mp3str"
+
+[deps]
+
+source_file="res://assets/music/pixelnoise_menu_loop2.mp3"
+dest_files=[ "res://.import/pixelnoise_menu_loop2.mp3-31903112a5b8acbb7d0589716b9f86d8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -3,8 +3,8 @@ class_name Dash
 
 export var dash_speed = 500
 
-func _physics_process(_delta):
-	if Input.is_action_just_pressed("dash") and $SkillCooldown.available():
+func _unhandled_input(event):
+	if event.is_action_pressed("dash", false, false) and $SkillCooldown.available():
 		$ImpactSound.play()
 		character.state = Character.States.DASH
 		var direction = character.get_movement_direction()
@@ -13,3 +13,4 @@ func _physics_process(_delta):
 		
 		character.velocity.x += (1 if direction >= 0 else -1) * dash_speed
 		$SkillCooldown.use()
+		get_tree().set_input_as_handled()

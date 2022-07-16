@@ -8,3 +8,5 @@ func _input(event):
 
 func _on_Start_pressed():
 	GlobalGame.load_level("res://levels/level00.tscn")
+
+

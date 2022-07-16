@@ -15,6 +15,8 @@ var timer_paused_offset = 0
 var camera : Camera2D
 var player : Player
 
+enum POPUP{ NEXT, RETRY }
+
 func _ready():
 	pass
 	
@@ -33,16 +35,20 @@ func start_run():
 	
 func stop_run():
 	run_stop_time = OS.get_system_time_msecs()
+	
+func elapsed_time_raw():
+	var time_now = run_stop_time if (run_stop_time) else OS.get_system_time_msecs()
+	return time_now - run_start_time - timer_paused_offset	
 
 func elapsed_time():
-	var time_now = run_stop_time if (run_stop_time) else OS.get_system_time_msecs()
-	var elapsed = time_now - run_start_time - timer_paused_offset
+	return format_elapsed_time(elapsed_time_raw())
 	
+func format_elapsed_time(elapsed):
 	var minutes = int(elapsed / 60 / 1000)
 	var seconds = int(elapsed / 1000) % 60
 	var miliseconds = int(elapsed) % 1000
 
-	return "%02d:%02d:%03d" % [minutes, seconds, miliseconds]
+	return "%02d:%02d:%03d" % [minutes, seconds, miliseconds]		
 		
 func hit(amount = 1):
 	camera.shake(0.2,25,6)

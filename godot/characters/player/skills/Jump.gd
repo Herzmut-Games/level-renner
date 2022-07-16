@@ -8,7 +8,7 @@ export var decay = 200
 var jump_muliplier = 0
 
 func _unhandled_input(event):
-	if event.is_action_pressed("jump", false, false) and( $RayCastLeft.is_colliding() or $RayCastRight.is_colliding()):
+	if event.is_action_pressed("jump", false, false) and ($RayCastLeft.is_colliding() or $RayCastRight.is_colliding()):
 		$AudioStreamPlayer.play()
 		jump_muliplier = jump_speed
 

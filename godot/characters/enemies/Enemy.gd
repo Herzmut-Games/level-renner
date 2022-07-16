@@ -1,15 +1,13 @@
 extends "res://characters/Character.gd"
 class_name Enemy
 
+export var hp = 1
 
-export var chase_velocity = Vector2(50.0, 0)
-export var roam_velocity = Vector2(30, 0)
-
-func roam():
-	target = null
-	velocity = roam_velocity
-	state = States.ROAM
-
-func chase(body: Node):
-	target = body
-	state = States.CHASE
+func hit():
+	if !.hit():
+		return
+	
+	hp -= 1
+	if hp <= 0:
+		state = States.DIE
+		self.collision_mask &= 0b11111111111111111111111111111101

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://levels/template/TileMapLevel.gd" type="Script" id=1]
 [ext_resource path="res://assets/forest/FLOWER 1.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/ui/UI - 16x16 UI Tileset with glow.png" type="Texture" id=11]
 [ext_resource path="res://levels/template/LevelTemplate.gd" type="Script" id=12]
 [ext_resource path="res://assets/fonts/Flavor_Text.tres" type="DynamicFont" id=13]
+[ext_resource path="res://assets/music/pixelnoise.mp3" type="AudioStream" id=14]
+[ext_resource path="res://scenes/LevelDone.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 7.99178, 3.00705, 16, 16, 0, 16, 0, 16 )
@@ -317,6 +319,7 @@ position = Vector2( 38, -42 )
 pause_mode = 2
 
 [node name="Control" type="Control" parent="UI"]
+pause_mode = 1
 margin_right = 40.0
 margin_bottom = 40.0
 script = SubResource( 10 )
@@ -408,3 +411,15 @@ margin_top = 351.0
 margin_right = 623.0
 margin_bottom = 369.0
 custom_fonts/font = ExtResource( 13 )
+
+[node name="LevelDone" parent="UI" instance=ExtResource( 15 )]
+margin_left = 203.0
+margin_top = 93.0
+margin_right = -177.0
+margin_bottom = -101.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -14.0
+autoplay = true
+bus = "Music"

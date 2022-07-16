@@ -7,20 +7,20 @@ export var velocity = Vector2.ZERO
 export var invincible = false
 export var switch_world_min_speed = 150
 
-var target = null
-
 signal collided(object, player)
 signal world_switched()
 
+onready var inverion_material = ShaderMaterial.new()
 onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var swap_impact_sound = preload("res://assets/sound/side_switch.mp3")
 
-enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL, HIT, DASH}
-var state = States.ROAM
+enum States{IDLE, CHASE, ROAM, ATTACK, RUN, JUMP, FALL, HIT, DASH, DIE}
+var state = States.IDLE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("characters")
+	inverion_material.shader = preload("res://assets/shaders/color_inversion.gdshader")
 
 func gravity_dir():
 	if position.y < gravity_line:
@@ -71,11 +71,11 @@ func process_movement(_delta):
 	pass
 
 func _process(_delta):
+	process_state()
 	process_animation()
-
-	if state == States.ATTACK:
-		yield($AnimatedSprite, "animation_finished")
-		idle()
+		
+func process_state():
+	pass
 
 func spin_dir():
 	$Tween.interpolate_property($AnimatedSprite, "rotation_degrees", 0, 180, .15)
@@ -97,10 +97,22 @@ func process_animation():
 
 	$AnimatedSprite.flip_h = velocity.x < 0
 	$AnimatedSpriteOverworld.flip_h = velocity.x < 0
+	
+func play_hit_animation() -> void:
+	var anim_sprite = $AnimatedSprite
+	var anim_sprite_ov = $AnimatedSpriteOverworld
+	for _i in range(5):
+		anim_sprite.material = null if anim_sprite.material else inverion_material
+		anim_sprite_ov.material = null if anim_sprite_ov.material else inverion_material
+		yield(get_tree().create_timer(.2), "timeout")
+	var upside_down = position.y > gravity_line
+	anim_sprite.material = inverion_material if upside_down else null
+	anim_sprite_ov.material = null
+	
+func hit():
+	if $HitCooldownTimer.time_left > 0:
+		return false
 
-func idle():
-	state = States.IDLE
-
-func attack(node: Node):
-	target = node
-	state = States.ATTACK
+	play_hit_animation()
+	$HitCooldownTimer.start(1)
+	return true

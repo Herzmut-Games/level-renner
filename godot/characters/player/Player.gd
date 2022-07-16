@@ -13,15 +13,10 @@ export var stop_force_speed_cap_air = 3000
 export var speed_cap_ground = 200
 export var speed_cap_air = 200
 
-onready var inverion_material = ShaderMaterial.new()
 onready var hit_sound = preload("res://assets/sound/Hit_2.wav")
 onready var audio_player = $AudioStreamPlayer
 
 var camExtScript = preload("res://utils/CamShake.gd").new()
-
-func _ready():
-	inverion_material.shader = preload("res://assets/shaders/color_inversion.gdshader")
-	._ready()
 
 func spin_dir():
 	$AnimatedSprite.material = null if $AnimatedSprite.material else inverion_material
@@ -46,18 +41,9 @@ func process_animation():
 		States.DASH:
 			$AnimatedSprite.play("dash")
 			$AnimatedSpriteOverworld.play("dash")
-			
-
-func play_hit_animation() -> void:
-	var anim_sprite = $AnimatedSprite
-	var anim_sprite_ov = $AnimatedSpriteOverworld
-	for _i in range(5):
-		anim_sprite.material = null if anim_sprite.material else inverion_material
-		anim_sprite_ov.material = null if anim_sprite_ov.material else inverion_material
-		yield(get_tree().create_timer(.2), "timeout")
-	var upside_down = position.y > gravity_line
-	anim_sprite.material = inverion_material if upside_down else null
-	anim_sprite_ov.material = null
+		States.ATTACK:
+			$AnimatedSprite.play("attack")
+			$AnimatedSpriteOverworld.play("attack")
 
 func walk_force():
 	if is_on_floor():
@@ -104,12 +90,13 @@ func process_movement(delta):
 				velocity_x_direction() * speed_cap(), 
 				stop_force_speed_cap() * delta
 			)
-	change_state()
 
-func change_state():
-	if state == States.DASH:
-		yield($AnimatedSprite, "animation_finished")
-		yield($AnimatedSpriteOverworld, "animation_finished")
+func process_state():
+	if state == States.ATTACK or state == States.DASH:
+		if $AnimatedSprite.visible:
+			yield($AnimatedSprite, "animation_finished")
+		if $AnimatedSpriteOverworld.visible:
+			yield($AnimatedSpriteOverworld, "animation_finished")
 	if velocity.length() > 0:
 		if velocity.normalized().dot(-gravity_dir()) > 0.1:
 			state = States.JUMP
@@ -122,17 +109,13 @@ func change_state():
 
 func get_movement_direction() -> float:
 	return Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-
+	
 func hit():
-	if $HitCooldownTimer.time_left > 0:
+	if !.hit():
 		return
-
+	audio_player.stream = hit_sound
+	audio_player.play()
+	
 	# only ignore the damage, we want to know if we were hit, just not die
 	if not invincible:
 		GlobalGame.hit()
-
-	audio_player.stream = hit_sound
-	audio_player.play()
-
-	play_hit_animation()
-	$HitCooldownTimer.start(1)

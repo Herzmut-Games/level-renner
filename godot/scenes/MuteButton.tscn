@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/ui/speaker_on.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/speaker_off.png" type="Texture" id=2]
+[ext_resource path="res://scenes/MuteButton.gd" type="Script" id=3]
+
+[node name="MuteButton" type="TextureButton"]
+margin_left = 569.0
+margin_top = 335.0
+margin_right = 585.0
+margin_bottom = 351.0
+rect_scale = Vector2( 2, 2 )
+toggle_mode = true
+shortcut_in_tooltip = false
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[connection signal="pressed" from="." to="." method="_on_MuteButton_pressed"]
