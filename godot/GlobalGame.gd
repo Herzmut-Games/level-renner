@@ -6,6 +6,7 @@ export var max_dashes = 3
 export var dashes = 3
 export var max_health = 3
 export var health = 3
+export var current_level : String
 
 var run_started = false
 var run_start_time = 0
@@ -26,9 +27,17 @@ func init(c, p):
 	start_run()
 	
 func load_level(level, h = 3, wj = 5):
+	current_level = level
 	var _error = get_tree().change_scene(level)
 	health = h
+	max_health = h
 	walljumps = wj
+	max_walljumps = wj
+	
+func reload_level():
+  var _error = get_tree().change_scene(current_level)
+  walljumps = max_walljumps
+  health = max_health
 	
 func start_run():
 	run_start_time = OS.get_system_time_msecs()
