@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Skill",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://characters/skills/Attack.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -44,15 +49,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://characters/player/Player.gd"
 }, {
-"base": "Node",
+"base": "Attack",
+"class": "PlayerAttack",
+"language": "GDScript",
+"path": "res://characters/player/skills/PlayerAttack.gd"
+}, {
+"base": "Node2D",
 "class": "Skill",
 "language": "GDScript",
-"path": "res://characters/player/skills/Skill.gd"
+"path": "res://characters/skills/Skill.gd"
 }, {
 "base": "Timer",
 "class": "SkillCooldown",
 "language": "GDScript",
-"path": "res://characters/player/skills/SkillCooldown.gd"
+"path": "res://characters/skills/SkillCooldown.gd"
 }, {
 "base": "TileMap",
 "class": "TileMapTrap",
@@ -70,6 +80,7 @@ _global_script_classes=[ {
 "path": "res://characters/player/skills/Walljump.gd"
 } ]
 _global_script_class_icons={
+"Attack": "",
 "Character": "",
 "Dash": "",
 "Enemy": "",
@@ -77,6 +88,7 @@ _global_script_class_icons={
 "LevelScore": "",
 "LevelTemplate": "",
 "Player": "",
+"PlayerAttack": "",
 "Skill": "",
 "SkillCooldown": "",
 "TileMapTrap": "",
@@ -87,7 +99,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ47"
-run/main_scene="res://scenes/Menu.tscn"
+run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -142,6 +154,10 @@ dash={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
+}
+attack={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [layer_names]

@@ -349,7 +349,6 @@ smoothing_enabled = true
 script = ExtResource( 4 )
 
 [node name="PauseMenu" parent="Camera2D" index="0" instance=ExtResource( 8 )]
-visible = false
 margin_left = -321.0
 margin_top = -202.0
 margin_right = 321.0
@@ -360,9 +359,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 volume_db = -13.0
-
-[node name="HitCooldownTimer" type="Timer" parent="." index="7"]
-one_shot = true
 
 [node name="Dash" parent="." index="8" instance=ExtResource( 7 )]
 character_path = NodePath("..")
