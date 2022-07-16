@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://characters/player/PlayerSprite.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://assets/fonts/Flavor_Text.tres" type="DynamicFont" id=2]
@@ -9,11 +9,12 @@
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 2.png" type="Texture" id=7]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 5.png" type="Texture" id=8]
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 3.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Menu.gd" type="Script" id=10]
+[ext_resource path="res://scenes/LevelSelect.gd" type="Script" id=10]
 [ext_resource path="res://scenes/MuteButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/ui/Back.png" type="Texture" id=12]
 [ext_resource path="res://assets/music/pixelnoise_menu_loop2.mp3" type="AudioStream" id=13]
 
-[node name="Menu" type="Control"]
+[node name="LevelSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 24.0
@@ -25,56 +26,156 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 10 )
 
-[node name="Buttons" type="PanelContainer" parent="."]
-margin_left = 241.0
-margin_top = 232.0
-margin_right = 388.0
-margin_bottom = 326.0
-rect_min_size = Vector2( 100, 70 )
+[node name="Player" type="AnimatedSprite" parent="."]
+position = Vector2( 139, 291 )
+scale = Vector2( 5, 5 )
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 8
+playing = true
+
+[node name="LevelList" type="ItemList" parent="."]
+margin_left = 211.0
+margin_top = 171.0
+margin_right = 411.0
+margin_bottom = 371.0
+rect_min_size = Vector2( 200, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+fixed_icon_size = Vector2( 43, 43 )
+
+[node name="RENNER" type="Control" parent="."]
+margin_left = 224.0
+margin_top = 81.0
+margin_right = 406.0
+margin_bottom = 135.0
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Buttons"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 140.0
-margin_bottom = 87.0
+[node name="REN" type="Label" parent="RENNER"]
+margin_right = 89.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 3 )
+text = "REN"
 
-[node name="Start" type="Button" parent="Buttons/VBoxContainer"]
-margin_right = 133.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
-text = "Embark on your journey"
+[node name="NER" type="Label" parent="RENNER"]
+margin_left = 180.0
+margin_right = 269.0
+margin_bottom = 64.0
+rect_scale = Vector2( -1, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "REN"
 
-[node name="LevelSelect" type="Button" parent="Buttons/VBoxContainer"]
-margin_top = 28.0
-margin_right = 133.0
-margin_bottom = 52.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
-text = "Level Selection"
+[node name="MuteButton" parent="." instance=ExtResource( 11 )]
 
-[node name="Credits" type="Button" parent="Buttons/VBoxContainer"]
-margin_top = 56.0
-margin_right = 133.0
-margin_bottom = 80.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 2 )
-text = "Credits"
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 412.0
+margin_top = 335.0
+margin_right = 452.0
+margin_bottom = 375.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
 
-[node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 317, 187 )
-scale = Vector2( 5, 5 )
-frames = ExtResource( 1 )
-animation = "idle"
-frame = 7
-playing = true
-flip_h = true
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -16.0
+autoplay = true
+bus = "Music"
+
+[node name="ParallaxBackgroundOverworld" type="ParallaxBackground" parent="."]
+offset = Vector2( -400, 395 )
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, -400, 395 )
+
+[node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackgroundOverworld/ParallaxBackground"]
+margin_top = -200.0
+margin_right = 1214.1
+color = Color( 0.745098, 0.890196, 0.901961, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer"]
+position = Vector2( -176, -216 )
+texture = ExtResource( 8 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1200, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer2"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 5 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.3, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer3"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 9 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer4"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 7 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 400, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer5"]
+position = Vector2( -176, -160 )
+texture = ExtResource( 6 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 1020, 160 )
+region_filter_clip = true
 
 [node name="LEVEL" type="Control" parent="."]
 margin_left = 221.0
@@ -101,111 +202,6 @@ rect_scale = Vector2( -1, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "LE"
 
-[node name="RENNER" type="Control" parent="."]
-margin_left = 224.0
-margin_top = 81.0
-margin_right = 406.0
-margin_bottom = 135.0
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="REN" type="Label" parent="RENNER"]
-margin_right = 89.0
-margin_bottom = 64.0
-custom_fonts/font = ExtResource( 3 )
-text = "REN"
-
-[node name="NER" type="Label" parent="RENNER"]
-margin_left = 180.0
-margin_right = 269.0
-margin_bottom = 64.0
-rect_scale = Vector2( -1, 1 )
-custom_fonts/font = ExtResource( 3 )
-text = "REN"
-
-[node name="ParallaxBackgroundOverworld" type="ParallaxBackground" parent="."]
-offset = Vector2( -400, 395 )
-scale = Vector2( 2, 2 )
-transform = Transform2D( 2, 0, 0, 2, -400, 395 )
-
-[node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackgroundOverworld/ParallaxBackground"]
-margin_top = -200.0
-margin_right = 1214.1
-color = Color( 0.745098, 0.890196, 0.901961, 1 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0.1, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer"]
-position = Vector2( -176, -216 )
-texture = ExtResource( 8 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1200, 160 )
-region_filter_clip = true
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer2"]
-position = Vector2( -176, -160 )
-texture = ExtResource( 5 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1020, 160 )
-region_filter_clip = true
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0.3, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer3"]
-position = Vector2( -176, -160 )
-texture = ExtResource( 9 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1020, 160 )
-region_filter_clip = true
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0.4, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer4"]
-position = Vector2( -176, -160 )
-texture = ExtResource( 7 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1020, 160 )
-region_filter_clip = true
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackgroundOverworld"]
-motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 400, 0 )
-
-[node name="Sprite" type="Sprite" parent="ParallaxBackgroundOverworld/ParallaxLayer5"]
-position = Vector2( -176, -160 )
-texture = ExtResource( 6 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1020, 160 )
-region_filter_clip = true
-
-[node name="MuteButton" parent="." instance=ExtResource( 11 )]
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-volume_db = -16.0
-autoplay = true
-bus = "Music"
-
-[connection signal="pressed" from="Buttons/VBoxContainer/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/LevelSelect" to="." method="_on_LevelSelect_pressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/Credits" to="." method="_on_LevelSelect_pressed"]
+[connection signal="item_activated" from="LevelList" to="." method="_on_LevelList_item_activated"]
+[connection signal="item_selected" from="LevelList" to="." method="_on_LevelList_item_selected"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

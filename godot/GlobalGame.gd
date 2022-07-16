@@ -17,6 +17,8 @@ var player : Player
 
 enum POPUP{ NEXT, RETRY }
 
+var scores = {}
+
 func _ready():
 	pass
 	
@@ -32,6 +34,7 @@ func load_level(level, h = 3, wj = 5):
 	
 func start_run():
 	run_start_time = OS.get_system_time_msecs()
+	run_stop_time = false
 	
 func stop_run():
 	run_stop_time = OS.get_system_time_msecs()
