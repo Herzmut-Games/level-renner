@@ -17,6 +17,8 @@ var player : Player
 
 enum POPUP{ NEXT, RETRY }
 
+var scores = {}
+
 func _ready():
 	pass
 	
