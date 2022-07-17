@@ -206,6 +206,21 @@ volume_db = -16.0
 autoplay = true
 bus = "Music"
 
+[node name="CreditsDialog" type="AcceptDialog" parent="."]
+margin_left = 159.0
+margin_top = 132.0
+margin_right = 242.0
+margin_bottom = 190.0
+window_title = "Credits"
+dialog_text = "Level Renner developed by:
+
+- Adi146
+- evilc00kie
+- Flipez
+- Kjarrigan
+- iMarv
+- Tch1b0"
+
 [connection signal="pressed" from="Buttons/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Buttons/VBoxContainer/LevelSelect" to="." method="_on_LevelSelect_pressed"]
-[connection signal="pressed" from="Buttons/VBoxContainer/Credits" to="." method="_on_LevelSelect_pressed"]
+[connection signal="pressed" from="Buttons/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
