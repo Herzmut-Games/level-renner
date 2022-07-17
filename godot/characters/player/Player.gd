@@ -119,3 +119,17 @@ func hit():
 	# only ignore the damage, we want to know if we were hit, just not die
 	if not invincible:
 		GlobalGame.hit()
+
+func die():
+	get_tree().paused = true
+	var cam = $DeathCam
+	$Tween.interpolate_property(cam, "zoom", $Camera2D.zoom, Vector2(.1, .1), .5)
+	$Tween.interpolate_property(cam, "global_position", Vector2(global_position.x, 0), global_position, .5)
+	cam.current = true
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	$AnimatedSprite.show()
+	$AnimatedSpriteOverworld.hide()
+	$AnimationPlayer.play("die")
+	yield($AnimationPlayer, "animation_finished")
+	$DeathCam/DeathMenu.show()
