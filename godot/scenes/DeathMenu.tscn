@@ -29,6 +29,11 @@ visible = false
 margin_right = 534.0
 margin_bottom = 262.0
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+margin_right = 640.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 0.568627 )
+
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0

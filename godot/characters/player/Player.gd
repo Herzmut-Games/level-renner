@@ -126,6 +126,8 @@ func die():
 	$Tween.interpolate_property($Camera2D, "global_position", $Camera2D.global_position, global_position, 1)
 	$Tween.start()
 	yield($Tween, "tween_completed")
+	$AnimatedSprite.show()
+	$AnimatedSpriteOverworld.hide()
 	$AnimationPlayer.play("die")
 	yield($AnimationPlayer, "animation_finished")
 	$Camera2D/DeathMenu.show()

@@ -356,7 +356,7 @@ frames = ExtResource( 3 )
 animation = "die"
 
 [node name="AnimatedSpriteOverworld" parent="." index="2"]
-visible = false
+pause_mode = 2
 frames = ExtResource( 3 )
 animation = "die"
 
@@ -388,6 +388,7 @@ margin_right = 321.0
 margin_bottom = 182.0
 
 [node name="DeathMenu" parent="Camera2D" index="1" instance=ExtResource( 9 )]
+pause_mode = 2
 visible = false
 
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
