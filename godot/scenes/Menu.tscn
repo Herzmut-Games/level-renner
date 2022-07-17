@@ -72,7 +72,7 @@ position = Vector2( 317, 187 )
 scale = Vector2( 5, 5 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 2
+frame = 7
 playing = true
 flip_h = true
 
@@ -215,7 +215,7 @@ window_title = "Credits"
 dialog_text = "Level Renner developed by:
 
 - Adi146
-- EvilCookie
+- evilc00kie
 - Flipez
 - Kjarrigan
 - iMarv
