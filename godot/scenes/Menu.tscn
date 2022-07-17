@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/forest/BACKGROUND SUMMER DAY 3.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Menu.gd" type="Script" id=10]
 [ext_resource path="res://scenes/MuteButton.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/music/pixelnoise_menu_loop2.mp3" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/pixelnoise_menu_loop5.mp3" type="AudioStream" id=12]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -201,8 +201,8 @@ region_filter_clip = true
 [node name="MuteButton" parent="." instance=ExtResource( 11 )]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 13 )
-volume_db = -16.0
+stream = ExtResource( 12 )
+volume_db = -10.0
 autoplay = true
 bus = "Music"
 
