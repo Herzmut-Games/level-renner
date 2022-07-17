@@ -16,3 +16,9 @@ func character_collision(object, character):
 	if character is Player:
 		if object.is_in_group("traps"):
 			character.hit()
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		# Restart level on CTRL+R
+		if event.pressed and event.scancode == KEY_R and event.control:
+			GlobalGame.reload_level()
