@@ -9,7 +9,7 @@ func _on_LevelEnd_body_entered(body):
 	get_tree().paused = true
 	
 	var popup = $UI/LevelDone
-	popup.level_done(level_score)
+	popup.level_done(3, level_score)
 	yield(popup, "popup_hide")
 	
 	if popup.choice == GlobalGame.POPUP.NEXT:
