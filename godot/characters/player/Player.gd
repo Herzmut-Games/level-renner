@@ -122,12 +122,14 @@ func hit():
 
 func die():
 	get_tree().paused = true
-	$Tween.interpolate_property($Camera2D, "zoom", $Camera2D.zoom, Vector2(.1, .1), .5)
-	$Tween.interpolate_property($Camera2D, "global_position", $Camera2D.global_position, global_position, 1)
+	var cam = $DeathCam
+	$Tween.interpolate_property(cam, "zoom", $Camera2D.zoom, Vector2(.1, .1), .5)
+	$Tween.interpolate_property(cam, "global_position", Vector2(global_position.x, 0), global_position, .5)
+	cam.current = true
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	$AnimatedSprite.show()
 	$AnimatedSpriteOverworld.hide()
 	$AnimationPlayer.play("die")
 	yield($AnimationPlayer, "animation_finished")
-	$Camera2D/DeathMenu.show()
+	$DeathCam/DeathMenu.show()
