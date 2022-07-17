@@ -1,7 +1,11 @@
 extends LevelTemplate
 
+onready var loop = preload("res://assets/sound/gwj47_1.mp3")
+
 func _ready():
 	._ready()
+	$BackgroundMusic.stream = loop
+	$BackgroundMusic.play()
 	get_tree().paused = true
 	$UI/Messages/TopLeft.text = "Level 1"
 	$UI/Messages/Center.text = "3"

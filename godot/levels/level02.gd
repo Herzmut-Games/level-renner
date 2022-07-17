@@ -1,6 +1,10 @@
 extends LevelTemplate
 
+onready var end_game_loop = preload("res://assets/sound/endgame.mp3")
+
 func _ready():
+	$BackgroundMusic.stream = end_game_loop
+	$BackgroundMusic.play()
 	get_tree().paused = false
 	$UI/Messages/TopLeft.text = "Level 2"
 
