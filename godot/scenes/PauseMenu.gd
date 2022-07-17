@@ -11,7 +11,7 @@ func hide():
 	$CanvasLayer/Control.hide()
 
 func _process(_delta):
-	if Input.is_action_just_pressed("escape") and enabled:
+	if Input.is_action_just_pressed("escape") and enabled and GlobalGame.health > 0:
 		var tree = get_tree()
 		tree.paused = not tree.paused
 		show() if tree.paused else hide()

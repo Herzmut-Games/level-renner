@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/player/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://characters/player/skills/Walljump.tscn" type="PackedScene" id=6]
 [ext_resource path="res://characters/player/skills/Dash.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/PauseMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/DeathMenu.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 6.5, 9 )
@@ -119,6 +120,34 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 25, 0 ), Vector2( 25, 0 ), Vector2( -25, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "die"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "die", "die" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -322,18 +351,21 @@ script = ExtResource( 2 )
 shape = SubResource( 9 )
 
 [node name="AnimatedSprite" parent="." index="1"]
+pause_mode = 2
 frames = ExtResource( 3 )
-animation = "hit"
-frame = 1
+animation = "die"
 
 [node name="AnimatedSpriteOverworld" parent="." index="2"]
+visible = false
 frames = ExtResource( 3 )
-animation = "jump"
+animation = "die"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+pause_mode = 2
 anims/RESET = SubResource( 2 )
 anims/attack = SubResource( 3 )
 anims/dash = SubResource( 4 )
+anims/die = SubResource( 11 )
 anims/fall = SubResource( 5 )
 anims/hit = SubResource( 10 )
 anims/idle = SubResource( 6 )
@@ -341,6 +373,7 @@ anims/jump = SubResource( 7 )
 anims/run = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
+pause_mode = 2
 position = Vector2( 0, -1 )
 current = true
 limit_top = -200
@@ -354,11 +387,17 @@ margin_top = -202.0
 margin_right = 321.0
 margin_bottom = 182.0
 
+[node name="DeathMenu" parent="Camera2D" index="1" instance=ExtResource( 9 )]
+visible = false
+
 [node name="WalljumpCooldownTimer" type="Timer" parent="." index="5"]
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 volume_db = -13.0
+
+[node name="Tween" parent="." index="7"]
+pause_mode = 2
 
 [node name="Dash" parent="." index="8" instance=ExtResource( 7 )]
 character_path = NodePath("..")

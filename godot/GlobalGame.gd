@@ -64,10 +64,6 @@ func format_elapsed_time(elapsed):
 		
 func hit(amount = 1):
 	camera.shake(0.2,25,6)
-	health = health - amount
-	if health <= 0:
-		health = 0
-		
-		var _error = get_tree().change_scene("res://scenes/GameOver.tscn")
-		# TODO: Game Over
-		pass
+	health = max(0, health - amount)
+	if health == 0:
+		player.die()
