@@ -6,6 +6,7 @@ func _ready():
 	._ready()
 	$BackgroundMusic.stream = loop
 	$BackgroundMusic.play()
+	get_tree().paused = false
 	$UI/Messages/TopLeft.text = "Level 1"
 
 func _on_LevelEnd_body_entered(body):
